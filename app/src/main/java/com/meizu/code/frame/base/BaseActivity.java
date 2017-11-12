@@ -3,18 +3,40 @@ package com.meizu.code.frame.base;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.meizu.code.frame.R;
+import com.orhanobut.logger.Logger;
 
 public abstract class BaseActivity<T extends BaseView> extends AppCompatActivity {
 
-    private T mBeamView;
+    protected T mBeamView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
         ensureCreateBeamView();
+        ViewGroup frameLayout = createBaseLayout();
+        setContentView(frameLayout, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mBeamView.doCreate(this, savedInstanceState);
+        frameLayout.addView(mBeamView.onCreateView(frameLayout, LayoutInflater.from(this)));
+    }
+
+    /**
+     * 生成底层View
+     */
+    private ViewGroup createBaseLayout() {
+        FrameLayout baseLayout = new FrameLayout(this);
+        baseLayout.setFitsSystemWindows(fitsSystemWindows());
+        return baseLayout;
+    }
+
+    protected boolean fitsSystemWindows() {
+        return true;
     }
 
     private void ensureCreateBeamView() {
@@ -23,14 +45,29 @@ public abstract class BaseActivity<T extends BaseView> extends AppCompatActivity
         }
     }
 
-    protected abstract T createBeamView();
+    private T createBeamView() {
+        try {
+            mBeamView = getBeamViewClass().newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                throw new Throwable("FAILED: getBeamViewClass");
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            } finally {
+                Logger.e("NULL POINTER: mBeamView");
+            }
+        }
 
-    @CallSuper
-    protected abstract T getBeamViewClass();
+        return mBeamView;
+    }
+
+    protected abstract Class<T> getBeamViewClass();
 
     @Override
     protected void onStart() {
         super.onStart();
+        mBeamView.onStart();
     }
 
     /**
@@ -46,11 +83,13 @@ public abstract class BaseActivity<T extends BaseView> extends AppCompatActivity
     @Override
     protected void onRestart() {
         super.onRestart();
+        mBeamView.onRestart();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        mBeamView.onResume();
     }
 
     /**
@@ -66,15 +105,18 @@ public abstract class BaseActivity<T extends BaseView> extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
+        mBeamView.onPause();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        mBeamView.onStop();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mBeamView.onDestroy();
     }
 }

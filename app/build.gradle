@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.meizu.code.frame"
         minSdkVersion 19
@@ -33,4 +33,5 @@ dependencies {
 
     // 第三方库
     compile(group: 'com.squareup.leakcanary', name: 'leakcanary-android-no-op', version: '1.4-beta2')
+    compile(group: 'com.orhanobut', name: 'logger', version: '2.1.1')
 }

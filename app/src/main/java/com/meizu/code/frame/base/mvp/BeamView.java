@@ -39,7 +39,7 @@ public abstract class BeamView<T extends BasePresenter> implements ILifeCycle {
         }
     }
 
-    protected Activity getActicity () {
+    protected Activity getActivity() {
         return mActivity;
     }
 

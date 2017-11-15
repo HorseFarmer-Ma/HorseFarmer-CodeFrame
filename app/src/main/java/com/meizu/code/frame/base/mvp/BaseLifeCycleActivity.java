@@ -1,38 +1,70 @@
-package com.meizu.code.frame.base;
+package com.meizu.code.frame.base.mvp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.meizu.code.frame.R;
-import com.orhanobut.logger.Logger;
+import com.meizu.code.frame.base.annotations.AnnotationsHelper;
 
-public abstract class BaseActivity<T extends BaseView> extends AppCompatActivity {
+/**
+ * 构造MVP框架相关，不可轻易改动
+ *
+ * @param <T>
+ */
+public abstract class BaseLifeCycleActivity<T extends BeamView> extends BaseActivity {
 
     protected T mBeamView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        doCreate(savedInstanceState);
+        FrameLayout container = new FrameLayout(this);
+        setContentView(mBeamView.doCreateView(container, LayoutInflater.from(this)));
+    }
+
+    @CallSuper
+    private void doCreate(Bundle savedInstanceState) {
         ensureCreateBeamView();
-        ViewGroup frameLayout = createBaseLayout();
-        setContentView(frameLayout, new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         mBeamView.doCreate(this, savedInstanceState);
-        frameLayout.addView(mBeamView.onCreateView(frameLayout, LayoutInflater.from(this)));
+    }
+
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        super.setContentView(createContentView(LayoutInflater.from(this).inflate(layoutResID, null)));
+    }
+
+    @Override
+    public void setContentView(@NonNull View view) {
+        super.setContentView(createContentView(view));
+    }
+
+    @Override
+    public void setContentView(@NonNull View view, ViewGroup.LayoutParams params) {
+        super.setContentView(createContentView(view), params);
     }
 
     /**
      * 生成底层View
      */
-    private ViewGroup createBaseLayout() {
+    private View createContentView(@NonNull View view) {
         FrameLayout baseLayout = new FrameLayout(this);
         baseLayout.setFitsSystemWindows(fitsSystemWindows());
+        baseLayout.addView(view, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         return baseLayout;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mBeamView.onActivityResult(requestCode, resultCode, data);
     }
 
     protected boolean fitsSystemWindows() {
@@ -41,28 +73,9 @@ public abstract class BaseActivity<T extends BaseView> extends AppCompatActivity
 
     private void ensureCreateBeamView() {
         if (mBeamView == null) {
-            mBeamView = createBeamView();
+            mBeamView = AnnotationsHelper.createBeamClass(this);
         }
     }
-
-    private T createBeamView() {
-        try {
-            mBeamView = getBeamViewClass().newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                throw new Throwable("FAILED: getBeamViewClass");
-            } catch (Throwable throwable) {
-                throwable.printStackTrace();
-            } finally {
-                Logger.e("NULL POINTER: mBeamView");
-            }
-        }
-
-        return mBeamView;
-    }
-
-    protected abstract Class<T> getBeamViewClass();
 
     @Override
     protected void onStart() {

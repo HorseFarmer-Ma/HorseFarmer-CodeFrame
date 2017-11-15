@@ -1,12 +1,10 @@
-package com.meizu.code.frame.common;
-
-import android.os.Build;
+package com.meizu.code.frame.common.utils;
 
 import java.io.File;
 import java.io.FileFilter;
 
 /**
- * 静态实现类
+ * 公共方法
  *
  * Created by mxm on 12/11/17.
  */

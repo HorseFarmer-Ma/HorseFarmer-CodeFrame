@@ -2,7 +2,7 @@ package com.meizu.code.frame.base;
 
 import android.app.Application;
 
-import com.meizu.code.frame.common.ThreadPoolServiceHelper;
+import com.meizu.code.frame.common.utils.ThreadPoolServiceHelper;
 
 /**
  * Created by mxm on 11/11/17.

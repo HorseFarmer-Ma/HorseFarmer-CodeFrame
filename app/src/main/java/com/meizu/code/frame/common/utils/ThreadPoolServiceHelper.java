@@ -1,4 +1,4 @@
-package com.meizu.code.frame.common;
+package com.meizu.code.frame.common.utils;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -16,11 +16,13 @@ import java.util.concurrent.Executors;
 
 public class ThreadPoolServiceHelper {
 
+    private static String TAG = "CodeFrame";
     private static final int THREADS_COUNT = Math.min(4, Math.max(6, CodeFrameStaticUtils.getNumberOfCPUCores()));
     private static ThreadPoolServiceHelper mInstance;
     private ExecutorService mExecutor;
 
     public ThreadPoolServiceHelper() {
+        Logger.d("Threads count : " + THREADS_COUNT);
         mExecutor = Executors.newFixedThreadPool(THREADS_COUNT);
     }
 
@@ -39,13 +41,13 @@ public class ThreadPoolServiceHelper {
         addTask(initLogger());
     }
 
-    public void addTask(Runnable runnable) {
+    private void addTask(Runnable runnable) {
         mExecutor.submit(runnable);
     }
 
     public void addTask(Runnable... runnable) {
-        for (int i = 0; i < runnable.length; i++) {
-            addTask(runnable[i]);
+        for (Runnable task : runnable) {
+            addTask(task);
         }
     }
 
@@ -55,10 +57,10 @@ public class ThreadPoolServiceHelper {
             public void run() {
                 Logger.addLogAdapter(new AndroidLogAdapter());
                 FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
-                        .showThreadInfo(false)  //是否选择显示线程信息，默认为true
-                        .methodCount(0)         //方法数显示多少行，默认2行
-                        .methodOffset(5)        //隐藏方法内部调用到偏移量，默认5
-                        .tag("CodeFrame")   //自定义TAG全部标签，默认PRETTY_LOGGER
+                        .showThreadInfo(false)  // 是否选择显示线程信息，默认为true
+                        .methodCount(0)         // 方法数显示多少行，默认2行
+                        .methodOffset(5)        // 隐藏方法内部调用到偏移量，默认5
+                        .tag(TAG)               // 自定义TAG全部标签，默认PRETTY_LOGGER
                         .build();
                 Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
             }

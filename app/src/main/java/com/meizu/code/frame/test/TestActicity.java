@@ -1,19 +1,10 @@
 package com.meizu.code.frame.test;
 
-import com.meizu.code.frame.base.BaseActivity;
+import com.meizu.code.frame.base.mvp.BaseLifeCycleActivity;
 
 /**
  * Created by mxm on 12/11/17.
  */
-
-public class TestActicity extends BaseActivity<TestView>{
-    @Override
-    protected Class<TestView> getBeamViewClass() {
-        return TestView.class;
-    }
-
-    @Override
-    protected boolean fitsSystemWindows() {
-        return true;
-    }
+//@RequireBeamView(TestView.class)
+public class TestActicity extends BaseLifeCycleActivity<TestView> {
 }

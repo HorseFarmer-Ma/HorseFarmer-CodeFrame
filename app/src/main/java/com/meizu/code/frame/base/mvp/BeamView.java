@@ -5,24 +5,30 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.meizu.code.frame.base.interport.ILifeCycle;
+import com.meizu.code.frame.base.interport.BaseLifeCycle;
 
 /**
  * 基本View
  *
+ *
  * Created by maxueming on 17-11-9.
  */
-public abstract class BeamView<T extends BasePresenter> implements ILifeCycle {
+public abstract class BeamView<T extends BasePresenter> extends BaseLifeCycle {
 
     private Activity mActivity;
     private View mRootView;
+    private ManagerBetweenVP mManagerBetweenVP;
 
-    private void setContainer(Object container) {
+    public BeamView() {
+        mManagerBetweenVP = new ManagerBetweenVP(this);
+    }
 
+    protected void setContainer(Object container) {
         if (container instanceof Activity) {
             mActivity = (Activity) container;
         } else if (container instanceof Fragment) {
@@ -37,87 +43,112 @@ public abstract class BeamView<T extends BasePresenter> implements ILifeCycle {
             }
             throw new IllegalArgumentException("container of BeamView should be instance of Activity or Fragment");
         }
+        mManagerBetweenVP.setContainer(mActivity);
+    }
+
+    protected BasePresenter getPresenter() {
+        return mManagerBetweenVP.getPresenter();
     }
 
     protected Activity getActivity() {
         return mActivity;
     }
 
-    public View getRootView() {
+    protected View getRootView() {
         return mRootView;
     }
 
+    protected void doActivityResult(int requestCode, int resultCode, Intent data) {
+        this.onActivityResult(requestCode, resultCode, data);
+        mManagerBetweenVP.doActivityResult(requestCode, resultCode, data);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    }
+
+    @CallSuper
+    protected void doCreate(Bundle savedInstanceState) {
+        this.onCreate(savedInstanceState);
+        mManagerBetweenVP.doCreate(savedInstanceState);
+    }
+
+    @CallSuper
     protected View doCreateView(ViewGroup parent, LayoutInflater inflater) {
         mRootView = onCreateView (parent, inflater);
         return mRootView;
     }
 
-    protected abstract View onCreateView (ViewGroup parent, LayoutInflater inflater);
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    }
-
-    public void doCreate(Object container, Bundle savedInstanceState) {
-        this.onCreate(savedInstanceState);
-        setContainer(container);
-    }
-
+    @CallSuper
     protected void doStart() {
         this.onStart();
+        mManagerBetweenVP.doStart();
     }
 
+    @CallSuper
     protected void doRestart() {
         this.onRestart();
+        mManagerBetweenVP.doRestart();
     }
 
+    @CallSuper
     protected void doResume() {
         this.onResume();
+        mManagerBetweenVP.doResume();
     }
 
+    @CallSuper
     protected void doPause() {
         this.onPause();
+        mManagerBetweenVP.doPause();
     }
 
+    @CallSuper
     protected void doStop() {
         this.onStop();
+        mManagerBetweenVP.doStop();
     }
 
+    @CallSuper
     protected void doDestroy() {
         this.onDestroy();
+        mManagerBetweenVP.doDestroy();
+        mManagerBetweenVP = null;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
 
     }
 
-    @Override
-    public void onStart() {
-
-    }
+    protected abstract View onCreateView (ViewGroup parent, LayoutInflater inflater);
 
     @Override
-    public void onRestart() {
-
-    }
-
-    @Override
-    public void onResume() {
+    protected void onStart() {
 
     }
 
     @Override
-    public void onPause() {
+    protected void onRestart() {
 
     }
 
     @Override
-    public void onStop() {
+    protected void onResume() {
 
     }
 
     @Override
-    public void onDestroy() {
+    protected void onPause() {
 
+    }
+
+    @Override
+    protected void onStop() {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        mActivity = null;
     }
 }

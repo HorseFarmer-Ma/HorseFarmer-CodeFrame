@@ -32,7 +32,8 @@ public abstract class BaseLifeCycleActivity<T extends BeamView> extends BaseActi
     @CallSuper
     private void doCreate(Bundle savedInstanceState) {
         ensureCreateBeamView();
-        mBeamView.doCreate(this, savedInstanceState);
+        mBeamView.setContainer(this);
+        mBeamView.doCreate(savedInstanceState);
     }
 
     @Override
@@ -64,7 +65,7 @@ public abstract class BaseLifeCycleActivity<T extends BeamView> extends BaseActi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mBeamView.onActivityResult(requestCode, resultCode, data);
+        mBeamView.doActivityResult(requestCode, resultCode, data);
     }
 
     protected boolean fitsSystemWindows() {
@@ -80,7 +81,7 @@ public abstract class BaseLifeCycleActivity<T extends BeamView> extends BaseActi
     @Override
     protected void onStart() {
         super.onStart();
-        mBeamView.onStart();
+        mBeamView.doStart();
     }
 
     /**
@@ -96,13 +97,13 @@ public abstract class BaseLifeCycleActivity<T extends BeamView> extends BaseActi
     @Override
     protected void onRestart() {
         super.onRestart();
-        mBeamView.onRestart();
+        mBeamView.doRestart();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mBeamView.onResume();
+        mBeamView.doResume();
     }
 
     /**
@@ -118,18 +119,19 @@ public abstract class BaseLifeCycleActivity<T extends BeamView> extends BaseActi
     @Override
     protected void onPause() {
         super.onPause();
-        mBeamView.onPause();
+        mBeamView.doPause();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mBeamView.onStop();
+        mBeamView.doStop();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mBeamView.onDestroy();
+        mBeamView.doDestroy();
+        mBeamView = null;
     }
 }

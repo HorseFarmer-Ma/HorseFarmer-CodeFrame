@@ -41,6 +41,11 @@ public class CodeFrameStaticUIUtil {
         }
     }
 
+    /**
+     * 去除ActionBar阴影，设置actionBar颜色为白色
+     *
+     * @param actionBar
+     */
     public static void initBeamViewActionBar(ActionBar actionBar) {
         if (actionBar == null) {
             return;

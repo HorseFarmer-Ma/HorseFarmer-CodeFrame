@@ -25,7 +25,7 @@ public class AnnotationsHelper {
         try {
             mBeamViewInstance = mBeamViewClazz.newInstance();
         } catch (Exception e) {
-            throw new IllegalArgumentException("mBeamViewClazz.newInstance() fail!");
+            throw new IllegalArgumentException("newInstance: mBeamViewClazz.newInstance() fail!");
         }
         return mBeamViewInstance;
     }
@@ -44,7 +44,7 @@ public class AnnotationsHelper {
         try {
             mBasePresenterInstance = mBasePresenterClazz.newInstance();
         } catch (Exception e) {
-            throw new IllegalArgumentException("mBasePresenterClazz.newInstance() fail!");
+            throw new IllegalArgumentException("newInstance: mBasePresenterClazz.newInstance() fail!");
         }
         return mBasePresenterInstance;
     }
@@ -53,7 +53,8 @@ public class AnnotationsHelper {
         Class clazz = t.getClass();
         M annotation = (M) clazz.getAnnotation(annotationTypeClazz);
         if (annotation == null) {
-            throw new IllegalArgumentException("get " + annotationTypeClazz.getSimpleName() + " annotation fail, please set your annotation first!");
+            throw new IllegalArgumentException("Get " + annotationTypeClazz.getSimpleName()
+                    + " annotation fail, please set it in "+ clazz.getSimpleName() + " first!");
         }
         return annotation;
     }

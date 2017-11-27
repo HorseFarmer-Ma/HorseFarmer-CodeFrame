@@ -10,8 +10,8 @@ import android.os.Bundle;
  * Created by maxueming on 17-11-16.
  */
 
-public class ManagerBetweenVP {
-    private BasePresenter mPresenter;
+public class ManagerBetweenVP<T extends BasePresenter> {
+    private T mPresenter;
 
     public ManagerBetweenVP(BeamView view) {
         mPresenter = PresenterManager.getInstance().createPresenter(PresenterManager.NON_PRESENTER_ID, view);
@@ -21,7 +21,7 @@ public class ManagerBetweenVP {
         mPresenter.setContainer(activity);
     }
 
-    public BasePresenter getPresenter() {
+    public T getPresenter() {
         return mPresenter;
     }
 

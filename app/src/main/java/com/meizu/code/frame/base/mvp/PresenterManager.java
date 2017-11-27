@@ -11,11 +11,11 @@ import java.util.UUID;
  * Created by maxueming on 17-11-16.
  */
 
-public class PresenterManager<M extends BasePresenter>{
+public class PresenterManager{
 
     public static final String NON_PRESENTER_ID = "-1";
     private static PresenterManager mInstance;
-    private HashMap<String, M> mPresenters;
+    private HashMap<String, BasePresenter> mPresenters;
 
     public PresenterManager() {
         mPresenters = new HashMap<>();
@@ -32,18 +32,19 @@ public class PresenterManager<M extends BasePresenter>{
         return mInstance;
     }
 
-    public <N extends BeamView> BasePresenter createPresenter(String presenterId, N view) {
+    public <M extends BasePresenter> M createPresenter(String presenterId, BeamView beamView) {
         M presenter;
         if (presenterId.equals(NON_PRESENTER_ID)) {
-            presenter = AnnotationsHelper.createPresenterClass(view);
+            presenter = AnnotationsHelper.createPresenterClass(beamView);
             // 生成Key，存presenter
             String newPresentId = generatePresenterId();
             presenter.setPresenterId(newPresentId);
+            mPresenters.put(newPresentId, presenter);
         } else {
-            presenter = mPresenters.get(presenterId);
+            presenter = (M) mPresenters.get(presenterId);
         }
         if (presenter != null) {
-            presenter.setBeamView(view);
+            presenter.setBeamView(beamView);
         }
         return presenter;
     }

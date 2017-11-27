@@ -10,22 +10,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.meizu.code.frame.base.interport.BaseLifeCycle;
+import com.meizu.code.frame.base.mvp.interport.BaseLifeCycle;
 
 /**
- * 基本View
+ * 基本View，页面View渲染层
  *
  *
  * Created by maxueming on 17-11-9.
  */
 public abstract class BeamView<T extends BasePresenter> extends BaseLifeCycle {
 
+    private static final String TAG = "BeamView";
     private Activity mActivity;
     private View mRootView;
-    private ManagerBetweenVP mManagerBetweenVP;
+    private ManagerBetweenVP<T> mManagerBetweenVP;
 
     public BeamView() {
-        mManagerBetweenVP = new ManagerBetweenVP(this);
+        mManagerBetweenVP = new ManagerBetweenVP<>(this);
     }
 
     protected void setContainer(Object container) {
@@ -46,12 +47,16 @@ public abstract class BeamView<T extends BasePresenter> extends BaseLifeCycle {
         mManagerBetweenVP.setContainer(mActivity);
     }
 
-    protected BasePresenter getPresenter() {
+    protected T getPresenter() {
         return mManagerBetweenVP.getPresenter();
     }
 
     protected Activity getActivity() {
         return mActivity;
+    }
+
+    protected View findViewById(int id) {
+        return getActivity().findViewById(id);
     }
 
     protected View getRootView() {

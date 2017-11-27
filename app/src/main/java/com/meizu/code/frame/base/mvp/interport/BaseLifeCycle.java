@@ -1,4 +1,4 @@
-package com.meizu.code.frame.base.interport;
+package com.meizu.code.frame.base.mvp.interport;
 
 import android.os.Bundle;
 

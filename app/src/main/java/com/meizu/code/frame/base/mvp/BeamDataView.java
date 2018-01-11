@@ -1,11 +1,10 @@
 package com.meizu.code.frame.base.mvp;
 
-import com.meizu.code.frame.base.mvp.data.LoadTypeParmas;
 import com.meizu.code.frame.base.mvp.interport.IViewShow;
 
 /**
  * BeamDataView: 数据处理基类View
- *
+ * <p>
  * Created by maxueming on 17-11-21.
  */
 
@@ -22,17 +21,12 @@ public abstract class BeamDataView<T extends BaseDataPresenter, D> extends BeamV
     }
 
     @Override
-    public void showContentView() {
-
-    }
-
-    @Override
     public void setData(D data) {
 
     }
 
     @Override
-    public void setOtherData(Object data, LoadTypeParmas loadTypeParmas) {
+    public void setExtraData(Object data, Enum loadTypeParmas) {
 
     }
 }

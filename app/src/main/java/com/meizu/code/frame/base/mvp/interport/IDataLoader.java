@@ -1,7 +1,6 @@
 package com.meizu.code.frame.base.mvp.interport;
 
 import com.meizu.code.frame.base.mvp.data.DataHolder;
-import com.meizu.code.frame.base.mvp.data.LoadTypeParmas;
 
 import rx.Observer;
 
@@ -16,7 +15,7 @@ public interface IDataLoader<D> {
     void register(Observer<DataHolder> observer);
 
     // 取消注册
-    void unRegister();
+    void unRegister(Observer<DataHolder> observer);
 
     // 销毁Loader
     void destroy();
@@ -34,8 +33,8 @@ public interface IDataLoader<D> {
     void doUpdate();
 
     // 执行其他任务
-    void doOtherTask(LoadTypeParmas loadTypeParmas);
+    void doExtraTask(Enum loadTypeParmas);
 
     // 获取最新数据
-    D getLastPageData();
+    D getBaseData();
 }

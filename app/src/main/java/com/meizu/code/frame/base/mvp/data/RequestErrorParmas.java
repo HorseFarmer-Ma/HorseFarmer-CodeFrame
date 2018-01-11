@@ -2,7 +2,7 @@ package com.meizu.code.frame.base.mvp.data;
 
 /**
  * 请求错误类型
- *
+ * <p>
  * Created by maxueming on 17-11-21.
  */
 

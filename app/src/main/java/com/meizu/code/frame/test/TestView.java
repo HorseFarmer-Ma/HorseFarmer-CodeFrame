@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.meizu.code.frame.R;
 import com.meizu.code.frame.base.annotations.RequirePresenter;
 import com.meizu.code.frame.base.mvp.BeamDataView;
-import com.meizu.code.frame.base.mvp.data.LoadTypeParmas;
 
 import java.util.List;
 
@@ -37,8 +36,9 @@ public class TestView extends BeamDataView<TestPresenter, List<String>> {
     }
 
     @Override
-    public void setOtherData(Object data, LoadTypeParmas loadTypeParmas) {
-        super.setOtherData(data, loadTypeParmas);
+    public void setExtraData(Object data, Enum loadTypeParmas) {
+        super.setExtraData(data, loadTypeParmas);
+
         if (mTextView == null) {
             mTextView = (TextView) findViewById(R.id.text);
         }

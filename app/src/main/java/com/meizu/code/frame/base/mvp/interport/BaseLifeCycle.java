@@ -12,6 +12,8 @@ public abstract class BaseLifeCycle {
 
     protected abstract void onCreate(Bundle savedInstanceState);
 
+    protected abstract void onActivityCreate();
+
     protected abstract void onStart();
 
     protected abstract void onRestart();

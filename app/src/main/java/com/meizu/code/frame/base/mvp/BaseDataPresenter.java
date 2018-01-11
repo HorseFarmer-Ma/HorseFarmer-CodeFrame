@@ -1,33 +1,52 @@
 package com.meizu.code.frame.base.mvp;
 
 import com.meizu.code.frame.base.mvp.data.DataHolder;
-import com.meizu.code.frame.base.mvp.data.LoadTypeParmas;
 import com.meizu.code.frame.base.mvp.interport.IDataLoader;
+import com.meizu.code.frame.base.mvp.interport.IViewShow;
 import com.orhanobut.logger.Logger;
 
 import rx.Observer;
 
+import static com.meizu.code.frame.base.mvp.data.LoadTypeParmas.LOAD_MORE;
+import static com.meizu.code.frame.base.mvp.data.LoadTypeParmas.REFRESH;
+import static com.meizu.code.frame.base.mvp.data.LoadTypeParmas.START;
+import static com.meizu.code.frame.base.mvp.data.LoadTypeParmas.UPDATE;
+
 /**
  * BaseDataPresenter： 数据处理基类
- *
+ * <p>
  * Created by maxueming on 17-11-21.
  */
 
-public abstract class BaseDataPresenter<M extends BeamDataView, D> extends BasePresenter<M> implements Observer<DataHolder> {
+public abstract class BaseDataPresenter<V extends IViewShow<D>, D> extends BasePresenter<V> implements Observer<DataHolder> {
 
     private static final String TAG = "BaseDataPresenter";
     private IDataLoader<D> mDataLoader;
+    private boolean mIsFirstLoad = true;
 
     @Override
     protected void onResume() {
         super.onResume();
         getLoader().register(this);
+        if (mIsFirstLoad) {
+            getLoader().doStart();
+            mIsFirstLoad = false;
+        } else if (isRequestUpdate()) {
+            getLoader().doUpdate();
+        }
+    }
+
+    /**
+     * 是否需要更新界面，可重写，默认需要
+     */
+    protected boolean isRequestUpdate() {
+        return true;
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        getLoader().unRegister();
+        getLoader().unRegister(this);
     }
 
     @Override
@@ -51,16 +70,11 @@ public abstract class BaseDataPresenter<M extends BeamDataView, D> extends BaseP
     public void onNext(DataHolder dataHolder) {
         Logger.d(TAG, "onNext: Load data finished");
         if (dataHolder == null) return;
-        LoadTypeParmas loadTypeParmas = dataHolder.getLoadTypeParmas();
-        switch (loadTypeParmas) {
-            case START:
-            case REFRESH:
-            case LOAD_MORE:
-            case UPDATE:
-                setData((D)dataHolder.getData(), loadTypeParmas);
-                break;
-            case OTHER:
-                setOtherData(dataHolder.getData(), loadTypeParmas);
+        Enum loadTypeParmas = dataHolder.getLoadTypeParmas();
+        if (loadTypeParmas == START || loadTypeParmas == LOAD_MORE || loadTypeParmas == UPDATE || loadTypeParmas == REFRESH) {
+            setData(((DataHolder<D>)dataHolder).getData());
+        } else {
+            setExtraData(dataHolder.getData(), loadTypeParmas);
         }
     }
 
@@ -81,7 +95,7 @@ public abstract class BaseDataPresenter<M extends BeamDataView, D> extends BaseP
      *
      * @param data
      */
-    protected void setData(D data, LoadTypeParmas loadTypeParmas) {
+    protected void setData(D data) {
         Logger.d(TAG, "print result = [" + data.toString() + "]");
         getView().setData(data);
     }
@@ -92,8 +106,8 @@ public abstract class BaseDataPresenter<M extends BeamDataView, D> extends BaseP
      * @param data
      * @param loadTypeParmas
      */
-    protected void setOtherData(Object data, LoadTypeParmas loadTypeParmas) {
+    protected void setExtraData(Object data, Enum loadTypeParmas) {
         Logger.d(TAG, "print result = [" + data.toString() + "]");
-        getView().setOtherData(data, loadTypeParmas);
+        getView().setExtraData(data, loadTypeParmas);
     }
 }

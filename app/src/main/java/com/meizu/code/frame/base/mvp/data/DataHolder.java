@@ -2,20 +2,21 @@ package com.meizu.code.frame.base.mvp.data;
 
 /**
  * 数据封装类
- *
+ * <p>
  * Created by maxueming on 17-11-20.
  */
 
 public class DataHolder<T> {
 
-    private LoadTypeParmas mLoadTypeParmas;
+    // 加载数据类型
+    private Enum mLoadTypeParmas;
     private T mData;
 
-    public LoadTypeParmas getLoadTypeParmas() {
+    public Enum getLoadTypeParmas() {
         return mLoadTypeParmas;
     }
 
-    public void setLoadTypeParmas(LoadTypeParmas mLoadTypeParmas) {
+    public void setLoadTypeParmas(Enum mLoadTypeParmas) {
         this.mLoadTypeParmas = mLoadTypeParmas;
     }
 

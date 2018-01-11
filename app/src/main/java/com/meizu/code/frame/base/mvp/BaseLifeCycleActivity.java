@@ -8,7 +8,7 @@ import com.meizu.code.frame.common.utils.CodeFrameStaticUIUtil;
 
 /**
  * 基本Acticity，存放通用操作，网络管理等初始化
- *
+ * <p>
  * Created by maxueming on 17-11-14.
  */
 

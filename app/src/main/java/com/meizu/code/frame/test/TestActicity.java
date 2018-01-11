@@ -5,7 +5,7 @@ import com.meizu.code.frame.base.mvp.BaseMvpActivity;
 
 /**
  * 测试Activity
- *
+ * <p>
  * Created by mxm on 12/11/17.
  */
 @RequireBeamView(TestView.class)

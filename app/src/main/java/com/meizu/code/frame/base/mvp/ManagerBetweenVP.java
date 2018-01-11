@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 /**
  * 中介，处理BeamView和Presenter逻辑
- *
+ * <p>
  * Created by maxueming on 17-11-16.
  */
 
@@ -31,6 +31,10 @@ public class ManagerBetweenVP<T extends BasePresenter> {
 
     protected void doCreate(Bundle savedInstanceState) {
         mPresenter.onCreate(savedInstanceState);
+    }
+
+    protected void doActivityCreate() {
+        mPresenter.onActivityCreate();
     }
 
     protected void doStart() {

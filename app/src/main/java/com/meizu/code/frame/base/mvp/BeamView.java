@@ -14,8 +14,7 @@ import com.meizu.code.frame.base.mvp.interport.BaseLifeCycle;
 
 /**
  * 基本View，页面View渲染层
- *
- *
+ * <p>
  * Created by maxueming on 17-11-9.
  */
 public abstract class BeamView<T extends BasePresenter> extends BaseLifeCycle {
@@ -79,7 +78,9 @@ public abstract class BeamView<T extends BasePresenter> extends BaseLifeCycle {
 
     @CallSuper
     protected View doCreateView(ViewGroup parent, LayoutInflater inflater) {
-        mRootView = onCreateView (parent, inflater);
+        mRootView = onCreateView(parent, inflater);
+        onActivityCreate();
+        mManagerBetweenVP.doActivityCreate();
         return mRootView;
     }
 
@@ -125,7 +126,12 @@ public abstract class BeamView<T extends BasePresenter> extends BaseLifeCycle {
 
     }
 
-    protected abstract View onCreateView (ViewGroup parent, LayoutInflater inflater);
+    @Override
+    protected void onActivityCreate() {
+
+    }
+
+    protected abstract View onCreateView(ViewGroup parent, LayoutInflater inflater);
 
     @Override
     protected void onStart() {

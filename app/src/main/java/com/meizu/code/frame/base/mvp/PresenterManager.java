@@ -7,11 +7,11 @@ import java.util.UUID;
 
 /**
  * 获取Present
- *
+ * <p>
  * Created by maxueming on 17-11-16.
  */
 
-public class PresenterManager{
+public class PresenterManager {
 
     public static final String NON_PRESENTER_ID = "-1";
     private static PresenterManager mInstance;

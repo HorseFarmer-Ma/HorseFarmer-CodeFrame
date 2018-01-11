@@ -1,8 +1,6 @@
 package com.meizu.code.frame.test;
 
-import com.meizu.code.frame.base.mvp.BaseLoader;
-import com.meizu.code.frame.base.mvp.data.CommonLoadParmas;
-import com.meizu.code.frame.base.mvp.data.LoadTypeParmas;
+import com.meizu.code.frame.base.mvp.BaseDataLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +10,11 @@ import rx.Observable;
 
 /**
  * 测试类
- *
+ * <p>
  * Created by maxueming on 17-11-20.
  */
 
-public class TestLoader extends BaseLoader<List<String>> {
+public class TestLoader extends BaseDataLoader<List<String>> {
     @Override
     protected Observable<List<String>> onStart() {
         return Observable.fromCallable(new Callable<List<String>>() {
@@ -43,30 +41,25 @@ public class TestLoader extends BaseLoader<List<String>> {
     }
 
     @Override
-    protected Observable<List<String>> onUpdate() {
-        return null;
-    }
-
-    @Override
-    protected Observable onOtherTask(LoadTypeParmas loadTypeParmas) {
-        if (loadTypeParmas.getLoadType().equals(CommonLoadParmas.TEST_LOAD_PARMAS1.getLoadType())) {
-            return Observable.fromCallable(new Callable<List<String>>() {
+    protected Observable onExtraTask(Enum loadTypeParmas) {
+        if (loadTypeParmas == TestLoadTypeParmas.LOAD1) {
+            return Observable.fromCallable(new Callable<String>() {
                 @Override
-                public List<String> call() throws Exception {
-                    List<String> listData = new ArrayList<>();
-                    listData.add("搞笑");
-                    listData.add("煞笔");
-                    return listData;
+                public String call() throws Exception {
+//                    List<String> listData = new ArrayList<>();
+//                    listData.add("搞笑");
+//                    listData.add("煞笔");
+                    return "ceshi";
                 }
             });
-        } else if (loadTypeParmas.getLoadType().equals(CommonLoadParmas.TEST_LOAD_PARMAS2.getLoadType())) {
-            return Observable.fromCallable(new Callable<List<String>>() {
+        } else if (loadTypeParmas == TestLoadTypeParmas.LOAD2) {
+            return Observable.fromCallable(new Callable<Integer>() {
                 @Override
-                public List<String> call() throws Exception {
-                    List<String> listData = new ArrayList<>();
-                    listData.add("试验");
-                    listData.add("恶心");
-                    return listData;
+                public Integer call() throws Exception {
+//                    List<String> listData = new ArrayList<>();
+//                    listData.add("试验");
+//                    listData.add("恶心");
+                    return 234;
                 }
             });
         } else {

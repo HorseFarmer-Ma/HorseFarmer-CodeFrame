@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 
 /**
  * UI设置公共方法
- *
+ * <p>
  * Created by maxueming on 17-11-15.
  */
 
@@ -28,7 +28,7 @@ public class CodeFrameStaticUIUtil {
             return;
         }
         window.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             try {
                 Class decorViewClazz = Class.forName("com.android.internal.policy.DecorView");
                 Field field = decorViewClazz.getDeclaredField("mSemiTransparentStatusBarColor");

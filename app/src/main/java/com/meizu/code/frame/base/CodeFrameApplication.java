@@ -5,6 +5,8 @@ import android.app.Application;
 import com.meizu.code.frame.common.utils.ThreadPoolServiceHelper;
 
 /**
+ * Application类，唯一
+ * <p>
  * Created by mxm on 11/11/17.
  */
 

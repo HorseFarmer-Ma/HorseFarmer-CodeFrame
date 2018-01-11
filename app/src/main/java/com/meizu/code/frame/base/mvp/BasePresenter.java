@@ -9,15 +9,15 @@ import com.meizu.code.frame.base.mvp.interport.BaseLifeCycle;
 
 /**
  * 基本Presenter，数据逻辑处理层
- *
+ * <p>
  * Created by maxueming on 17-11-9.
  */
 
-public abstract class BasePresenter<M extends BeamView> extends BaseLifeCycle{
+public abstract class BasePresenter<V> extends BaseLifeCycle {
 
     private static final String TAG = "BasePresenter";
     private Activity mActivity;
-    private M mBeamView;
+    private V mBeamView;
     private String mPresenterId;
 
     protected void setContainer(Activity activity) {
@@ -32,11 +32,11 @@ public abstract class BasePresenter<M extends BeamView> extends BaseLifeCycle{
         return mPresenterId;
     }
 
-    protected M getView() {
+    protected V getView() {
         return mBeamView;
     }
 
-    protected void setBeamView(M view) {
+    protected void setBeamView(V view) {
         this.mBeamView = view;
     }
 
@@ -47,6 +47,11 @@ public abstract class BasePresenter<M extends BeamView> extends BaseLifeCycle{
     @Override
     @CallSuper
     protected void onCreate(Bundle savedInstanceState) {
+    }
+
+    @Override
+    @CallSuper
+    protected void onActivityCreate() {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

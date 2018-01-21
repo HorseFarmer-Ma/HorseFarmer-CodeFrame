@@ -8,7 +8,12 @@
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:navigationBarColor">@color/navitation_bar_bg_color</item>
         <item name="windowActionBarOverlay">true</item>
+        <item name="actionBarTheme">@style/BaseActionBarTheme</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="BaseActionBarTheme" >
+        <item name="android:elevation">0dp</item>
     </style>
 
 </resources>

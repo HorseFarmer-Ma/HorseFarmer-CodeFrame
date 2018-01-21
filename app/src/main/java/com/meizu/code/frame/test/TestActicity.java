@@ -1,7 +1,7 @@
 package com.meizu.code.frame.test;
 
 import com.meizu.code.frame.base.annotations.RequireBeamView;
-import com.meizu.code.frame.base.mvp.BaseMvpActivity;
+import com.meizu.code.frame.base.frame.mvp.BaseMvpActivity;
 
 /**
  * 测试Activity
@@ -10,4 +10,8 @@ import com.meizu.code.frame.base.mvp.BaseMvpActivity;
  */
 @RequireBeamView(TestView.class)
 public class TestActicity extends BaseMvpActivity<TestView> {
+    @Override
+    protected Class<TestView> createBeamView() {
+        return TestView.class;
+    }
 }

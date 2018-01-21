@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="navitation_bar_bg_color">#F7F7F7</color>
+
+    <color name="day_background">#FFFFFFFF</color>
+    <color name="night_background">#FF333333</color>
+</resources>

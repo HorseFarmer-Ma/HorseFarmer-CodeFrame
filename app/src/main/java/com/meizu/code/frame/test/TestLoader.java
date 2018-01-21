@@ -1,6 +1,6 @@
 package com.meizu.code.frame.test;
 
-import com.meizu.code.frame.base.mvp.BaseDataLoader;
+import com.meizu.code.frame.base.frame.mvp.BaseDataLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +46,6 @@ public class TestLoader extends BaseDataLoader<List<String>> {
             return Observable.fromCallable(new Callable<String>() {
                 @Override
                 public String call() throws Exception {
-//                    List<String> listData = new ArrayList<>();
-//                    listData.add("搞笑");
-//                    listData.add("煞笔");
                     return "ceshi";
                 }
             });
@@ -56,9 +53,6 @@ public class TestLoader extends BaseDataLoader<List<String>> {
             return Observable.fromCallable(new Callable<Integer>() {
                 @Override
                 public Integer call() throws Exception {
-//                    List<String> listData = new ArrayList<>();
-//                    listData.add("试验");
-//                    listData.add("恶心");
                     return 234;
                 }
             });

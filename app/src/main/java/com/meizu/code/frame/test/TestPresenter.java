@@ -2,8 +2,8 @@ package com.meizu.code.frame.test;
 
 import android.os.Bundle;
 
-import com.meizu.code.frame.base.mvp.BaseDataPresenter;
-import com.meizu.code.frame.base.mvp.interport.IDataLoader;
+import com.meizu.code.frame.base.frame.mvp.BaseDataPresenter;
+import com.meizu.code.frame.base.frame.interport.IDataLoader;
 
 import java.util.List;
 
@@ -23,7 +23,6 @@ public class TestPresenter extends BaseDataPresenter<TestView, List<String>> {
     @Override
     protected void onResume() {
         super.onResume();
-        getLoader().doExtraTask(TestLoadTypeParmas.LOAD2);
     }
 
     @Override

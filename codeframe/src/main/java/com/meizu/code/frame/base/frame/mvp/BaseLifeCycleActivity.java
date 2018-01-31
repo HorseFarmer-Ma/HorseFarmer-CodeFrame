@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.meizu.code.frame.swipeback.SwipeBackActivity;
-import com.meizu.code.frame.utils.CodeFrameStaticUIUtil;
+import com.meizu.code.frame.utils.CodeFrameStaticUiUtil;
+import com.meizu.code.frame.utils.StatusbarColorUtils;
 
 /**
  * 基本Acticity，存放通用操作，网络管理等初始化
@@ -17,7 +18,9 @@ public abstract class BaseLifeCycleActivity extends SwipeBackActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CodeFrameStaticUIUtil.initThemeActionBar(getSupportActionBar());
+        CodeFrameStaticUiUtil.setWindowTranslucentStatus(this);
+        CodeFrameStaticUiUtil.initThemeActionBar(this);
+        StatusbarColorUtils.setStatusBarDarkIcon(this, true);
     }
 
     @Override

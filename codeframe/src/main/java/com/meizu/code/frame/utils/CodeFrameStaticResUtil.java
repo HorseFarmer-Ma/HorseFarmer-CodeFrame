@@ -11,6 +11,6 @@ import android.support.annotation.DrawableRes;
 
 public class CodeFrameStaticResUtil {
     public static Drawable getDrawable(@DrawableRes int id) {
-        return CodeFrameUtil.getInstance().getGlobeContext().getResources().getDrawable(id);
+        return CodeFrameUtil.getInstance().getApplicationContext().getResources().getDrawable(id);
     }
 }

@@ -9,7 +9,7 @@ import android.content.Context;
  */
 
 public class CodeFrameUtil {
-    private Context mGlobeContext;
+    private Context mApplicationContext;
     private static CodeFrameUtil sInstance;
 
     public static CodeFrameUtil getInstance() {
@@ -23,12 +23,12 @@ public class CodeFrameUtil {
         return sInstance;
     }
 
-    public Context getGlobeContext() {
-        return mGlobeContext;
+    public Context getApplicationContext() {
+        return mApplicationContext;
     }
 
-    public void setGlobeContext(Context globeContext) {
-        this.mGlobeContext = globeContext;
+    public void setApplicationContext(Context context) {
+        this.mApplicationContext = context;
     }
 
     // 在退出APP后需要销毁

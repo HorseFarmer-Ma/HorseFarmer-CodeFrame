@@ -2,6 +2,7 @@ package com.meizu.code.frame;
 
 import android.app.Application;
 
+import com.meizu.code.frame.base.frame.mvp.BaseApplication;
 import com.meizu.code.frame.utils.CodeFrameUtil;
 import com.meizu.code.frame.utils.ThreadPoolServiceHelper;
 import com.squareup.leakcanary.LeakCanary;
@@ -12,7 +13,7 @@ import com.squareup.leakcanary.LeakCanary;
  * Created by mxm on 11/11/17.
  */
 
-public class CodeFrameApplication extends Application {
+public class CodeFrameApplication extends BaseApplication {
 
     @Override
     public void onCreate() {
@@ -21,13 +22,6 @@ public class CodeFrameApplication extends Application {
     }
 
     private void init() {
-        LeakCanary.install(this);
-        CodeFrameUtil.getInstance().setGlobeContext(this);
         ThreadPoolServiceHelper.getInstance().init();
-    }
-
-    @Override
-    public void onTrimMemory(int level) {
-        super.onTrimMemory(level);
     }
 }

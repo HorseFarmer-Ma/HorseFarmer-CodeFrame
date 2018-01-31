@@ -3,17 +3,8 @@
 
     <style name="BaseAppTheme" parent="Theme.AppCompat.Light">
         <item name="android:windowTranslucentStatus">true</item>
-        <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:navigationBarColor">@color/navitation_bar_bg_color</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="windowActionBarOverlay">true</item>
-        <item name="actionBarTheme">@style/BaseActionBarTheme</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-    </style>
-
-    <style name="BaseActionBarTheme" >
-        <item name="android:elevation">0dp</item>
     </style>
 
 </resources>

@@ -1,10 +1,12 @@
 package com.meizu.code.frame.utils;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
 import com.meizu.code.frame.R;
@@ -18,17 +20,15 @@ import java.lang.reflect.Field;
  * Created by maxueming on 17-11-15.
  */
 
-public class CodeFrameStaticUIUtil {
+public class CodeFrameStaticUiUtil {
 
     /**
      * Android N 设置沉浸式状态栏
      *
-     * @param window
+     * @param activity
      */
-    public static void setWindowTranslucentStatus(Window window) {
-        if (window == null) {
-            return;
-        }
+    public static void setWindowTranslucentStatus(@NonNull Activity activity) {
+        Window window = activity.getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             try {
                 Class decorViewClazz = Class.forName("com.android.internal.policy.DecorView");
@@ -45,13 +45,23 @@ public class CodeFrameStaticUIUtil {
     /**
      * 去除ActionBar阴影，设置actionBar颜色为白色
      *
-     * @param actionBar
+     * @param activity
      */
-    public static void initThemeActionBar(@NonNull ActionBar actionBar) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+    public static void initThemeActionBar(@NonNull Activity activity) {
+        ActionBar actionBar = getActionBar(activity);
+        if (actionBar == null) return;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             actionBar.setElevation(0);
         }
+        actionBar.setBackgroundDrawable(CodeFrameStaticResUtil.getDrawable(
+                CodeFrameSettingUtil.getInstance().isNight() ?
+                        R.color.night_background : R.color.day_background));
+    }
 
-        actionBar.setBackgroundDrawable(CodeFrameStaticResUtil.getDrawable(R.color.day_background));
+    public static ActionBar getActionBar(Activity activity) {
+        if (activity instanceof AppCompatActivity) {
+            return ((AppCompatActivity) activity).getSupportActionBar();
+        }
+        return null;
     }
 }

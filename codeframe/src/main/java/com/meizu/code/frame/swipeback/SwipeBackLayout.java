@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.meizu.code.frame.R;
+import com.meizu.code.frame.utils.CodeFrameSettingUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -458,7 +459,8 @@ public class SwipeBackLayout extends FrameLayout {
 
         ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
         ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
-        decorChild.setBackgroundResource(R.color.day_background);
+        decorChild.setBackgroundResource(CodeFrameSettingUtil.getInstance().isNight()?
+                R.color.night_background : R.color.day_background);
         decor.removeView(decorChild);
         addView(decorChild);
         setContentView(decorChild);

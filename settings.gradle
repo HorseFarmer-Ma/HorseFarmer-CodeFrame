@@ -1,1 +1,4 @@
-include ':app', ':codeframe'
+rootProject.name = 'CodeFrame'  // 可有可无的一行
+include ':app'
+// MVP模块
+include ':codeframe'

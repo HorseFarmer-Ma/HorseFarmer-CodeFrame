@@ -11,22 +11,14 @@ import com.meizu.code.frame.base.frame.interport.IViewShow;
 public abstract class BeamDataView<T extends BaseDataPresenter, D> extends BeamView<T> implements IViewShow<D> {
 
     @Override
-    public void showEmptyView() {
-
-    }
+    public abstract void showEmptyView();
 
     @Override
-    public void showErrorView() {
-
-    }
+    public abstract void showErrorView();
 
     @Override
-    public void setData(D data) {
-
-    }
+    public abstract void setData(D data);
 
     @Override
-    public void setExtraData(Object data, Enum loadTypeParmas) {
-
-    }
+    public abstract void setExtraData(Object data, Enum loadTypeParmas);
 }

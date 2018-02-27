@@ -4,16 +4,16 @@ package com.meizu.code.frame.utils;
  * Created by mxm on 21/01/18.
  */
 
-public class CodeFrameSettingUtil {
-    private static CodeFrameSettingUtil sInstance;
+public class CodeFrameSettingUtils {
+    private static CodeFrameSettingUtils sInstance;
 
     private boolean mIsNight;
 
-    public static CodeFrameSettingUtil getInstance() {
+    public static CodeFrameSettingUtils getInstance() {
         if (sInstance == null) {
-            synchronized (CodeFrameSettingUtil.class) {
+            synchronized (CodeFrameSettingUtils.class) {
                 if (sInstance == null) {
-                    sInstance = new CodeFrameSettingUtil();
+                    sInstance = new CodeFrameSettingUtils();
                 }
             }
         }

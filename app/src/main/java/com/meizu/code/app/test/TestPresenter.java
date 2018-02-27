@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.meizu.code.frame.base.frame.mvp.BaseDataPresenter;
 import com.meizu.code.frame.base.frame.interport.IDataLoader;
+import com.meizu.code.frame.base.model.delegate.DelegateBlockItem;
 
 import java.util.List;
 
@@ -13,10 +14,10 @@ import java.util.List;
  * Created by mxm on 12/11/17.
  */
 
-public class TestPresenter extends BaseDataPresenter<TestView, List<String>> {
+public class TestPresenter extends BaseDataPresenter<TestView, List<DelegateBlockItem>> {
 
     @Override
-    protected IDataLoader<List<String>> createLoader() {
+    protected IDataLoader<List<DelegateBlockItem>> createLoader() {
         return new TestLoader();
     }
 

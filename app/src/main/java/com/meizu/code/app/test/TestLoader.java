@@ -1,6 +1,8 @@
 package com.meizu.code.app.test;
 
 import com.meizu.code.frame.base.frame.mvp.BaseDataLoader;
+import com.meizu.code.frame.base.model.delegate.DelegateBlockItem;
+import com.meizu.code.frame.base.model.widget.recyclerview.blockitem.CodeFrameBlockItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,29 +16,29 @@ import rx.Observable;
  * Created by maxueming on 17-11-20.
  */
 
-public class TestLoader extends BaseDataLoader<List<String>> {
+public class TestLoader extends BaseDataLoader<List<DelegateBlockItem>> {
     @Override
-    protected Observable<List<String>> onStart() {
-        return Observable.fromCallable(new Callable<List<String>>() {
+    protected Observable<List<DelegateBlockItem>> onStart() {
+        return Observable.fromCallable(new Callable<List<DelegateBlockItem>>() {
             @Override
-            public List<String> call() throws Exception {
-                List<String> listData = new ArrayList<>();
-                listData.add("搞笑");
-                listData.add("煞笔");
-                listData.add("试验");
-                listData.add("恶心");
+            public List<DelegateBlockItem> call() throws Exception {
+                List<DelegateBlockItem> listData = new ArrayList<>();
+                listData.add(new CodeFrameBlockItem("搞笑"));
+                listData.add(new CodeFrameBlockItem("煞笔"));
+                listData.add(new CodeFrameBlockItem("试验"));
+                listData.add(new CodeFrameBlockItem("恶心"));
                 return listData;
             }
         });
     }
 
     @Override
-    protected Observable<List<String>> onRefresh() {
+    protected Observable<List<DelegateBlockItem>> onRefresh() {
         return null;
     }
 
     @Override
-    protected Observable<List<String>> onLoadMore() {
+    protected Observable<List<DelegateBlockItem>> onLoadMore() {
         return null;
     }
 

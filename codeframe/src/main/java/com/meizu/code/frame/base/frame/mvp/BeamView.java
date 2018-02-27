@@ -2,7 +2,6 @@ package com.meizu.code.frame.base.frame.mvp;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.meizu.code.frame.base.frame.interport.BaseLifeCycle;
 import com.meizu.code.frame.utils.CodeFrameStaticUtils;
-import com.meizu.code.frame.utils.CodeFrameUtil;
 
 /**
  * 基本View，页面View渲染层

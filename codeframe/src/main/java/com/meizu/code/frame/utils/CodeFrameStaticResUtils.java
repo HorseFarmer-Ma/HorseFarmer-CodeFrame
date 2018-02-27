@@ -9,8 +9,8 @@ import android.support.annotation.DrawableRes;
  * Created by maxueming on 17-11-15.
  */
 
-public class CodeFrameStaticResUtil {
+public class CodeFrameStaticResUtils {
     public static Drawable getDrawable(@DrawableRes int id) {
-        return CodeFrameUtil.getInstance().getApplicationContext().getResources().getDrawable(id);
+        return CodeFrameUtils.getInstance().getApplicationContext().getResources().getDrawable(id);
     }
 }

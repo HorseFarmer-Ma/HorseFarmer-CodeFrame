@@ -2,7 +2,6 @@ package com.meizu.code.frame.utils;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -20,7 +19,7 @@ import java.lang.reflect.Field;
  * Created by maxueming on 17-11-15.
  */
 
-public class CodeFrameStaticUiUtil {
+public class CodeFrameStaticUiUtils {
 
     /**
      * Android N 设置沉浸式状态栏
@@ -53,8 +52,8 @@ public class CodeFrameStaticUiUtil {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             actionBar.setElevation(0);
         }
-        actionBar.setBackgroundDrawable(CodeFrameStaticResUtil.getDrawable(
-                CodeFrameSettingUtil.getInstance().isNight() ?
+        actionBar.setBackgroundDrawable(CodeFrameStaticResUtils.getDrawable(
+                CodeFrameSettingUtils.getInstance().isNight() ?
                         R.color.night_background : R.color.day_background));
     }
 

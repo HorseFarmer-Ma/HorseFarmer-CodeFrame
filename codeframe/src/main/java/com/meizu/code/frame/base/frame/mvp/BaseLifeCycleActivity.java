@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.meizu.code.frame.swipeback.SwipeBackActivity;
-import com.meizu.code.frame.utils.CodeFrameStaticUiUtil;
+import com.meizu.code.frame.utils.CodeFrameStaticUiUtils;
 import com.meizu.code.frame.utils.StatusbarColorUtils;
 
 /**
@@ -18,8 +18,8 @@ public abstract class BaseLifeCycleActivity extends SwipeBackActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CodeFrameStaticUiUtil.setWindowTranslucentStatus(this);
-        CodeFrameStaticUiUtil.initThemeActionBar(this);
+        CodeFrameStaticUiUtils.setWindowTranslucentStatus(this);
+        CodeFrameStaticUiUtils.initThemeActionBar(this);
         StatusbarColorUtils.setStatusBarDarkIcon(this, true);
     }
 

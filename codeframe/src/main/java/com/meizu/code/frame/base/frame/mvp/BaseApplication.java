@@ -2,7 +2,7 @@ package com.meizu.code.frame.base.frame.mvp;
 
 import android.app.Application;
 
-import com.meizu.code.frame.utils.CodeFrameUtil;
+import com.meizu.code.frame.utils.CodeFrameUtils;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -18,6 +18,6 @@ public class BaseApplication extends Application {
         super.onCreate();
         // 调试内存泄露时打开
         LeakCanary.install(this);
-        CodeFrameUtil.getInstance().setApplicationContext(this);
+        CodeFrameUtils.getInstance().setApplicationContext(this);
     }
 }

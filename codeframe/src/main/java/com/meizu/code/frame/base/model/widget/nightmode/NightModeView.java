@@ -1,4 +1,4 @@
-package com.meizu.code.frame.base.model.widget;
+package com.meizu.code.frame.base.model.widget.nightmode;
 
 /**
  * 夜间模式接口

@@ -1,26 +1,26 @@
-package com.meizu.code.frame.base.model.widget;
+package com.meizu.code.frame.base.model.widget.nightmode;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 /**
- * 夜间模式TextView
+ * 夜间模式ImageView
  * <p>
  * Created by mxm on 14/01/18.
  */
 
-public class NightModeTextView extends AppCompatTextView implements NightModeView {
+public class NightModeImageView extends AppCompatImageView implements NightModeView {
 
-    public NightModeTextView(Context context) {
+    public NightModeImageView(Context context) {
         this(context, null);
     }
 
-    public NightModeTextView(Context context, AttributeSet attrs) {
+    public NightModeImageView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public NightModeTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public NightModeImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
     }

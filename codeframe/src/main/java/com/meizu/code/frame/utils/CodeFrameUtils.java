@@ -8,15 +8,15 @@ import android.content.Context;
  * Created by mxm on 21/01/18.
  */
 
-public class CodeFrameUtil {
+public class CodeFrameUtils {
     private Context mApplicationContext;
-    private static CodeFrameUtil sInstance;
+    private static CodeFrameUtils sInstance;
 
-    public static CodeFrameUtil getInstance() {
+    public static CodeFrameUtils getInstance() {
         if (sInstance == null) {
-            synchronized (CodeFrameUtil.class) {
+            synchronized (CodeFrameUtils.class) {
                 if (sInstance == null) {
-                    sInstance = new CodeFrameUtil();
+                    sInstance = new CodeFrameUtils();
                 }
             }
         }

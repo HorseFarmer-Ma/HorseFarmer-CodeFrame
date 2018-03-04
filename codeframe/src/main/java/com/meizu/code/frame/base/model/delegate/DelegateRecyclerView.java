@@ -1,6 +1,7 @@
 package com.meizu.code.frame.base.model.delegate;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,8 @@ import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.meizu.code.frame.R;
 
 import java.lang.ref.WeakReference;
 
@@ -22,6 +25,7 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
     private GestureDetectorCompat mGestureDetectorCompat;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
+    private Drawable mSelector;
 
     public DelegateRecyclerView(Context context) {
         super(context);
@@ -38,10 +42,30 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
         initView();
     }
 
+    @Override
+    protected void onMeasure(int widthSpec, int heightSpec) {
+        super.onMeasure(widthSpec, heightSpec);
+        if (mSelector == null) {
+            useDefaultSelector();
+        }
+    }
+
+    private void useDefaultSelector() {
+        setSelector(getResources().getDrawable(R.drawable.mz_recyclerview_selector));
+    }
+
     private void initView() {
         addOnItemTouchListener(this);
         mGestureDetectorCompat = new GestureDetectorCompat(getContext(),
                 new GestureListener(this));
+    }
+
+    public void setSelector(Drawable selector) {
+        mSelector = selector;
+    }
+
+    public void cleanSelector() {
+        mSelector = null;
     }
 
     @Override
@@ -87,6 +111,7 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {
         private WeakReference<RecyclerView> mWr;
+        private View mClickView;
 
         public GestureListener(RecyclerView recyclerView) {
             mWr = new WeakReference<RecyclerView>(recyclerView);
@@ -95,11 +120,10 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
             if (mWr == null) return false;
-            View childe = mWr.get().findChildViewUnder(e.getX(), e.getY());
-            if (childe != null) {
-                RecyclerView.ViewHolder VH = mWr.get().getChildViewHolder(childe);
+            if (mClickView != null) {
+                RecyclerView.ViewHolder VH = mWr.get().getChildViewHolder(mClickView);
                 if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(VH.itemView, VH.getAdapterPosition());
+                    mOnItemClickListener.onItemClick(VH.itemView, VH.getLayoutPosition());
                 }
             }
             return true;
@@ -108,13 +132,23 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
         @Override
         public void onLongPress(MotionEvent e) {
             if (mWr == null) return;
-            View childe = mWr.get().findChildViewUnder(e.getX(), e.getY());
-            if (childe != null) {
-                RecyclerView.ViewHolder VH = mWr.get().getChildViewHolder(childe);
+            if (mClickView != null) {
+                RecyclerView.ViewHolder VH = mWr.get().getChildViewHolder(mClickView);
                 if (mOnItemLongClickListener != null) {
-                    mOnItemLongClickListener.onItemLongClick(VH.itemView, VH.getAdapterPosition());
+                    mOnItemLongClickListener.onItemLongClick(VH.itemView, VH.getLayoutPosition());
                 }
             }
+        }
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            mClickView = mWr.get().findChildViewUnder(e.getX(), e.getY());
+            return mClickView != null;
+        }
+
+        @Override
+        public void onShowPress(MotionEvent e) {
+            if ()
         }
     }
 }

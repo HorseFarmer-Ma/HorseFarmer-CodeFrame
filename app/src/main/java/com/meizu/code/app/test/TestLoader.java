@@ -23,10 +23,12 @@ public class TestLoader extends BaseDataLoader<List<DelegateBlockItem>> {
             @Override
             public List<DelegateBlockItem> call() throws Exception {
                 List<DelegateBlockItem> listData = new ArrayList<>();
-                listData.add(new CodeFrameBlockItem("搞笑"));
-                listData.add(new CodeFrameBlockItem("煞笔"));
-                listData.add(new CodeFrameBlockItem("试验"));
-                listData.add(new CodeFrameBlockItem("恶心"));
+                for (int i = 0; i < 12; i++) {
+                    listData.add(new CodeFrameBlockItem("煞笔"));
+                    listData.add(new CodeFrameBlockItem("试验"));
+                    listData.add(new CodeFrameBlockItem("搞笑"));
+                    listData.add(new CodeFrameBlockItem("恶心"));
+                }
                 return listData;
             }
         });

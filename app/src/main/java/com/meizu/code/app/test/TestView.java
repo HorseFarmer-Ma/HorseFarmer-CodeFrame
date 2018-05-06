@@ -1,6 +1,7 @@
 package com.meizu.code.app.test;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class TestView extends BeamDataView<TestPresenter, List<DelegateBlockItem
 
     private DelegateRecyclerView mRecyclerView;
     private DelegateRecyclerViewAdapter mAdapter;
+    private static final String TAG = "TestView";
 
     @Override
     protected View onCreateView(ViewGroup parent, LayoutInflater inflater) {
@@ -36,13 +38,13 @@ public class TestView extends BeamDataView<TestPresenter, List<DelegateBlockItem
         mRecyclerView.setOnItemClickListener(new DelegateRecyclerView.OnItemClickListener() {
             @Override
             public void onItemClick(View itemView, int position) {
-                Toast.makeText(getActivity(), "点击了第" + position + "项", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onItemClick() called with: itemView = [" + itemView + "], position = [" + position + "]");
             }
         });
         mRecyclerView.setOnItemLongClickListener(new DelegateRecyclerView.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(View itemView, int position) {
-                Toast.makeText(getActivity(), "长按了第" + position + "项", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onItemLongClick() called with: itemView = [" + itemView + "], position = [" + position + "]");
             }
         });
         return rootView;

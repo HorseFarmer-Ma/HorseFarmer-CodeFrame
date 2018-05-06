@@ -13,7 +13,6 @@ import java.util.List;
  * <p>
  * Created by mxm on 12/11/17.
  */
-
 public class TestPresenter extends BaseDataPresenter<TestView, List<DelegateBlockItem>> {
 
     @Override

@@ -6,11 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.meizu.code.frame.R;
+import com.orhanobut.logger.Logger;
 
 import java.lang.ref.WeakReference;
 
@@ -19,9 +21,9 @@ import java.lang.ref.WeakReference;
  * <p>
  * Created by mxm on 14/02/18.
  */
-
 public class DelegateRecyclerView extends RecyclerView implements RecyclerView.OnItemTouchListener {
 
+    private static final String TAG = "DelegateRecyclerView";
     private GestureDetectorCompat mGestureDetectorCompat;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
@@ -57,7 +59,7 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
     private void initView() {
         addOnItemTouchListener(this);
         mGestureDetectorCompat = new GestureDetectorCompat(getContext(),
-                new GestureListener(this));
+                new GestureListener());
     }
 
     public void setSelector(Drawable selector) {
@@ -81,6 +83,7 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
 
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+        Logger.d(TAG, "onRequestDisallowInterceptTouchEvent(): disallowIntercept = [" + disallowIntercept + "]");
     }
 
     /**
@@ -109,46 +112,55 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
         void onItemLongClick(View itemView, int position);
     }
 
-    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
-        private WeakReference<RecyclerView> mWr;
-        private View mClickView;
+    public OnItemClickListener getOnItemClickListener() {
+        return mOnItemClickListener;
+    }
 
-        public GestureListener(RecyclerView recyclerView) {
-            mWr = new WeakReference<RecyclerView>(recyclerView);
-        }
+    public OnItemLongClickListener getOnItemLongClickListener() {
+        return mOnItemLongClickListener;
+    }
+
+    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+        private View mClickView;
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            if (mWr == null) return false;
             if (mClickView != null) {
-                RecyclerView.ViewHolder VH = mWr.get().getChildViewHolder(mClickView);
-                if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(VH.itemView, VH.getLayoutPosition());
+                RecyclerView.ViewHolder VH = getChildViewHolder(mClickView);
+                if (VH != null) {
+                    View childView = VH.itemView;
+                    boolean isHandled = childView != null && childView.dispatchTouchEvent(e);
+                    if (mOnItemClickListener != null && !isHandled) {
+                        mOnItemClickListener.onItemClick(childView, VH.getLayoutPosition());
+                        return true;
+                    }
                 }
             }
-            return true;
+            return false;
         }
 
         @Override
         public void onLongPress(MotionEvent e) {
-            if (mWr == null) return;
             if (mClickView != null) {
-                RecyclerView.ViewHolder VH = mWr.get().getChildViewHolder(mClickView);
-                if (mOnItemLongClickListener != null) {
-                    mOnItemLongClickListener.onItemLongClick(VH.itemView, VH.getLayoutPosition());
+                RecyclerView.ViewHolder VH = getChildViewHolder(mClickView);
+                if (VH != null) {
+                    View childView = VH.itemView;
+                    boolean isHandled = childView != null && childView.dispatchTouchEvent(e);
+                    if (mOnItemLongClickListener != null && !isHandled) {
+                        mOnItemLongClickListener.onItemLongClick(childView, VH.getLayoutPosition());
+                    }
                 }
             }
         }
 
         @Override
         public boolean onDown(MotionEvent e) {
-            mClickView = mWr.get().findChildViewUnder(e.getX(), e.getY());
+            mClickView = findChildViewUnder(e.getX(), e.getY());
             return mClickView != null;
         }
 
         @Override
         public void onShowPress(MotionEvent e) {
-            if ()
         }
     }
 }

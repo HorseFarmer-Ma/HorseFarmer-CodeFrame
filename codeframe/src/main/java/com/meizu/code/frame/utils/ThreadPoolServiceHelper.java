@@ -55,7 +55,12 @@ public class ThreadPoolServiceHelper {
         return new Runnable() {
             @Override
             public void run() {
-                Logger.addLogAdapter(new AndroidLogAdapter());
+                Logger.addLogAdapter(new AndroidLogAdapter(){
+                    @Override
+                    public boolean isLoggable(int priority, String tag) {
+                        return true;
+                    }
+                });
                 FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                         .showThreadInfo(false)  // 是否选择显示线程信息，默认为true
                         .methodCount(0)         // 方法数显示多少行，默认2行

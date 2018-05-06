@@ -20,7 +20,8 @@ import java.util.List;
 public class DelegateRecyclerViewAdapter extends RecyclerView.Adapter<DelegateViewHolder> {
 
     private Context mContext;
-    private List<DelegateBlockItem> mItems;
+    private final List<DelegateBlockItem> mItems = new ArrayList<>();
+    private final List<Class<DelegateBlockLayout>> mLayoutClazzs = new ArrayList<>();
 
     public DelegateRecyclerViewAdapter(Context context) {
         mContext = context;
@@ -28,7 +29,8 @@ public class DelegateRecyclerViewAdapter extends RecyclerView.Adapter<DelegateVi
 
     public void swapData(List<DelegateBlockItem> items) {
         if (CollectionUtils.isEqual(items, mItems)) return;
-        mItems = new ArrayList<>(items);
+        mItems.clear();
+        mItems.addAll(items);
         notifyDataSetChanged();
     }
 
@@ -36,7 +38,7 @@ public class DelegateRecyclerViewAdapter extends RecyclerView.Adapter<DelegateVi
     public DelegateViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         DelegateBlockLayout delegateBlockLayout = generateBlockLayout(mItems, viewType);
         View view = delegateBlockLayout.createView(mContext, parent, false);
-        return new DelegateViewHolder(view, delegateBlockLayout);
+        return new DelegateViewHolder<DelegateBlockLayout>(view, delegateBlockLayout);
     }
 
     private DelegateBlockLayout generateBlockLayout(List<DelegateBlockItem> items, int position) {
@@ -80,6 +82,11 @@ public class DelegateRecyclerViewAdapter extends RecyclerView.Adapter<DelegateVi
 
     @Override
     public int getItemViewType(int position) {
-        return position;
+        DelegateBlockItem item = mItems.get(position);
+        Class clazz = item.getBlockLayoutClazz();
+        if (!mLayoutClazzs.contains(clazz)) {
+            mLayoutClazzs.add(clazz);
+        }
+        return mLayoutClazzs.indexOf(clazz);
     }
 }

@@ -30,7 +30,7 @@ public abstract class BaseLoader<D> implements IDataLoader<D> {
     private static final String TAG = "BaseLoader";
 
     // 行为发射数据
-    private SerializedSubject<DataHolder, DataHolder> mPublishSubject = PublishSubject.<DataHolder>create().toSerialized();
+    private final SerializedSubject<DataHolder, DataHolder> mPublishSubject = PublishSubject.<DataHolder>create().toSerialized();
     // 储存子请求
     private RequestSubscriptionManager<Enum> mChildTaskSubscriptions = new RequestSubscriptionManager<>();
     // 储存主要请求
@@ -43,17 +43,16 @@ public abstract class BaseLoader<D> implements IDataLoader<D> {
     @Override
     public void register(Observer<DataHolder> observer) {
         Logger.d(TAG, "register observer");
+        if (mMainTaskSubscription == null) {
+            mMainTaskSubscription = new RequestSubscriptionManager<>();
+        }
         if (mMainTaskSubscription.containsKey(observer)) return;
-        if (mPublishSubject != null && mMainTaskSubscription != null) {
-            synchronized (this) {
-                if (mPublishSubject != null && mMainTaskSubscription != null) {
-                    Subscription subscription = mPublishSubject
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(observer);
-                    mMainTaskSubscription.add(observer, subscription);
-                }
-            }
+        synchronized (this) {
+            Subscription subscription = mPublishSubject
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(observer);
+            mMainTaskSubscription.add(observer, subscription);
         }
     }
 
@@ -78,14 +77,13 @@ public abstract class BaseLoader<D> implements IDataLoader<D> {
         // 程序处于后台，取消订阅，防止数据回传
         if (mMainTaskSubscription != null) {
             mMainTaskSubscription.unsubscribe();
+            mMainTaskSubscription = null;
         }
         if (mChildTaskSubscriptions != null && !mChildTaskSubscriptions.isUnsubscribed()) {
             mChildTaskSubscriptions.unsubscribe();
+            mChildTaskSubscriptions = null;
         }
-        mPublishSubject = null;
         mDataHolder = null;
-        mChildTaskSubscriptions = null;
-        mMainTaskSubscription = null;
         mBaseData = null;
     }
 

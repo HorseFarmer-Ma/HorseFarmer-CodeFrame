@@ -45,13 +45,21 @@ public class CodeFrameStaticUtils {
     /**
      * 从View中提取Activity
      */
-    public static Activity getActivityByView(View view) {
+    public static Activity scanActivityFromView(View view) {
         Context context = view.getContext();
+        return scanActivityFromContext(context);
+    }
+
+    public static Activity scanActivityFromContext(Context context) {
         if (context instanceof Activity) return (Activity) context;
         while (context instanceof ContextWrapper) {
             context = ((ContextWrapper) context).getBaseContext();
             if (context instanceof Activity) return (Activity) context;
         }
         return null;
+    }
+
+    public static boolean checkActivityIsAlive(Activity activity) {
+        return activity != null && !activity.isFinishing();
     }
 }

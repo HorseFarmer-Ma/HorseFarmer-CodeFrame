@@ -35,7 +35,7 @@ public abstract class BeamView<T extends BasePresenter> extends BaseLifeCycle {
             mActivity = ((Fragment) container).getActivity();
         } else {
             if (container instanceof View) {
-                mActivity = CodeFrameStaticUtils.getActivityByView((View) container);
+                mActivity = CodeFrameStaticUtils.scanActivityFromView((View) container);
             } else {
                 throw new IllegalArgumentException("container of BeamView should be instance of Activity or Fragment or View");
             }

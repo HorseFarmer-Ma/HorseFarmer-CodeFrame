@@ -22,7 +22,6 @@ public abstract class DelegateBlockLayout<ITEM extends DelegateBlockItem> {
     protected View mView;
     private int mPosition;
     private Context mContext;
-    private WeakReference<Activity> mWr;
 
     /**
      * 生成视图
@@ -50,7 +49,7 @@ public abstract class DelegateBlockLayout<ITEM extends DelegateBlockItem> {
         updateView(item);
     }
 
-    public abstract void updateView(ITEM item);
+    protected abstract void updateView(ITEM item);
 
     protected View inflate(@LayoutRes int resource, @Nullable ViewGroup root) {
         return LayoutInflater.from(mContext).inflate(resource, root, false);

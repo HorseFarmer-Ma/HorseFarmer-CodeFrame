@@ -29,11 +29,11 @@ public class CodeFrameBlockLayout extends DelegateBlockLayout<CodeFrameBlockItem
     }
 
     @Override
-    public void updateView(CodeFrameBlockItem item) {
+    protected void updateView(CodeFrameBlockItem item) {
         if (mViewHolder == null) {
             mViewHolder = new ViewHolder(mView);
         }
-        mViewHolder.mTextView.setText(item.getText());
+        mViewHolder.mTextView.setText(item.getData());
         mViewHolder.mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,12 +49,10 @@ public class CodeFrameBlockLayout extends DelegateBlockLayout<CodeFrameBlockItem
         });
     }
 
-    private final class ViewHolder {
-
+    private static class ViewHolder {
+        final TextView mTextView;
         ViewHolder(View view) {
             mTextView = view.findViewById(R.id.text_test);
         }
-
-        final TextView mTextView;
     }
 }

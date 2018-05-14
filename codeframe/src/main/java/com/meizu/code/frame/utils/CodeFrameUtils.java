@@ -23,7 +23,7 @@ public class CodeFrameUtils {
         return sInstance;
     }
 
-    public Context getApplicationContext() {
+    public Context getGlobalContext() {
         return mApplicationContext;
     }
 

@@ -21,7 +21,7 @@ import java.lang.ref.WeakReference;
  * <p>
  * Created by mxm on 14/02/18.
  */
-public class DelegateRecyclerView extends RecyclerView implements RecyclerView.OnItemTouchListener {
+public class DelegateRecyclerView extends RecyclerView {
 
     private static final String TAG = "DelegateRecyclerView";
     private GestureDetectorCompat mGestureDetectorCompat;
@@ -57,7 +57,6 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
     }
 
     private void initView() {
-        addOnItemTouchListener(this);
         mGestureDetectorCompat = new GestureDetectorCompat(getContext(),
                 new GestureListener());
     }
@@ -71,19 +70,8 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
     }
 
     @Override
-    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-        mGestureDetectorCompat.onTouchEvent(e);
-        return false;
-    }
-
-    @Override
-    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-        mGestureDetectorCompat.onTouchEvent(e);
-    }
-
-    @Override
-    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-        Logger.d(TAG, "onRequestDisallowInterceptTouchEvent(): disallowIntercept = [" + disallowIntercept + "]");
+    public boolean onTouchEvent(MotionEvent e) {
+        return mGestureDetectorCompat.onTouchEvent(e) || super.onTouchEvent(e);
     }
 
     /**
@@ -127,13 +115,9 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
         public boolean onSingleTapUp(MotionEvent e) {
             if (mClickView != null) {
                 RecyclerView.ViewHolder VH = getChildViewHolder(mClickView);
-                if (VH != null) {
-                    View childView = VH.itemView;
-                    boolean isHandled = childView != null && childView.dispatchTouchEvent(e);
-                    if (mOnItemClickListener != null && !isHandled) {
-                        mOnItemClickListener.onItemClick(childView, VH.getLayoutPosition());
-                        return true;
-                    }
+                if (VH != null && mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(VH.itemView, VH.getLayoutPosition());
+                    return true;
                 }
             }
             return false;
@@ -143,12 +127,8 @@ public class DelegateRecyclerView extends RecyclerView implements RecyclerView.O
         public void onLongPress(MotionEvent e) {
             if (mClickView != null) {
                 RecyclerView.ViewHolder VH = getChildViewHolder(mClickView);
-                if (VH != null) {
-                    View childView = VH.itemView;
-                    boolean isHandled = childView != null && childView.dispatchTouchEvent(e);
-                    if (mOnItemLongClickListener != null && !isHandled) {
-                        mOnItemLongClickListener.onItemLongClick(childView, VH.getLayoutPosition());
-                    }
+                if (VH != null && mOnItemLongClickListener != null) {
+                    mOnItemLongClickListener.onItemLongClick(VH.itemView, VH.getLayoutPosition());
                 }
             }
         }

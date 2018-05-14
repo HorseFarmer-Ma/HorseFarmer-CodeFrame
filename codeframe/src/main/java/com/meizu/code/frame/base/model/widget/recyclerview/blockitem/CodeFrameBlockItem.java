@@ -8,20 +8,14 @@ import com.meizu.code.frame.base.model.widget.recyclerview.blocklayout.CodeFrame
  * <p>
  * Created by mxm on 24/02/18.
  */
-public class CodeFrameBlockItem extends DelegateBlockItem<CodeFrameBlockLayout> {
+public class CodeFrameBlockItem extends DelegateBlockItem<String> {
 
-    private String mText;
-
-    public CodeFrameBlockItem(String text) {
-        mText = text;
+    public CodeFrameBlockItem(String data) {
+        super(data);
     }
 
     @Override
-    protected Class<CodeFrameBlockLayout> getBlockLayoutClazz() {
+    protected Class getBlockLayoutClazz() {
         return CodeFrameBlockLayout.class;
-    }
-
-    public String getText() {
-        return mText;
     }
 }

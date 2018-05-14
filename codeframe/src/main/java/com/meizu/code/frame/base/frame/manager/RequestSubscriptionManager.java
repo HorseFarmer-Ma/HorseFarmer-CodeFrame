@@ -76,26 +76,6 @@ public final class RequestSubscriptionManager<T> implements Subscription {
     }
 
     /**
-     * Unsubscribes any subscriptions that are currently part of this {@code RequestSubscriptionManager} and remove
-     * them from the {@code RequestSubscriptionManager} so that the {@code RequestSubscriptionManager} is empty and
-     * able to manage new subscriptions.
-     */
-    public void clear() {
-        if (!mUnsubscribed) {
-            HashMap<T, Subscription> unsubscribe = null;
-            synchronized (this) {
-                if (mUnsubscribed || mSubscriptionManagers == null) {
-                    return;
-                } else {
-                    unsubscribe = mSubscriptionManagers;
-                    mSubscriptionManagers = null;
-                }
-            }
-            unsubscribeFromAll(unsubscribe);
-        }
-    }
-
-    /**
      * Unsubscribes itself and all inner subscriptions.
      * <p>After call of this method, new {@code Subscription}s added to {@link RequestSubscriptionManager}
      * will be unsubscribed immediately.
@@ -117,12 +97,12 @@ public final class RequestSubscriptionManager<T> implements Subscription {
         }
     }
 
-    private static <V> void unsubscribeFromAll(HashMap<V, Subscription> subscriptions) {
-        if (subscriptions == null) {
+    private static <V> void unsubscribeFromAll(HashMap<V, Subscription> s) {
+        if (s == null) {
             return;
         }
         List<Throwable> es = null;
-        for (Map.Entry<V, Subscription> entry : subscriptions.entrySet()) {
+        for (Map.Entry<V, Subscription> entry : s.entrySet()) {
             try {
                 entry.getValue().unsubscribe();
             } catch (Throwable e) {
@@ -151,18 +131,13 @@ public final class RequestSubscriptionManager<T> implements Subscription {
     }
 
     public int size() {
-        if (mSubscriptionManagers != null) {
-            return mSubscriptionManagers.size();
-        }
-        return -1;
+        return mSubscriptionManagers != null ? mSubscriptionManagers.size() : 0;
     }
 
     public boolean containsKey(T key) {
         if (mSubscriptionManagers != null) {
             synchronized (this) {
-                if (mSubscriptionManagers != null) {
-                    return mSubscriptionManagers.containsKey(key);
-                }
+                return mSubscriptionManagers != null && mSubscriptionManagers.containsKey(key);
             }
         }
         return false;

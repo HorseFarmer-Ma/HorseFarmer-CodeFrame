@@ -15,12 +15,16 @@
  */
 package com.meizu.code.frame.base.frame.retrofit;
 
+import com.meizu.code.frame.base.frame.retrofit.adapter.FastJsonConverterFactory;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 /**
  * Retrofit请求框架
@@ -44,7 +48,16 @@ public class ServiceClient {
         return ServiceClientHolder.INSTANCE;
     }
 
-    public OkHttpClient getOkHttpClient() {
+    public Retrofit createRetrofit(String url) {
+        return new Retrofit.Builder()
+                        .baseUrl(url)
+                        .client(getClient())
+                        .addConverterFactory(FastJsonConverterFactory.create())
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .build();
+    }
+
+    public OkHttpClient getClient() {
         if (mOkHttpClient == null) {
             synchronized (ServiceClient.class) {
                 if (mOkHttpClient == null) {
@@ -52,8 +65,6 @@ public class ServiceClient {
                             .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
                             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-                            .addInterceptor()
-                            .addNetworkInterceptor()
                             .build();
                 }
             }
@@ -61,7 +72,7 @@ public class ServiceClient {
         return mOkHttpClient;
     }
 
-    private static class AppInterceptor implements Interceptor {
+    private static class CommonInterceptor implements Interceptor {
 
         @Override
         public Response intercept(Chain chain) throws IOException {

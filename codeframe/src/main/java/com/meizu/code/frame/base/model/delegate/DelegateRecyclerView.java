@@ -6,15 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.meizu.code.frame.R;
-import com.orhanobut.logger.Logger;
-
-import java.lang.ref.WeakReference;
 
 /**
  * 基本Recyclerview
@@ -76,8 +72,6 @@ public class DelegateRecyclerView extends RecyclerView {
 
     /**
      * 列表点击事件
-     *
-     * @param onItemClickListener
      */
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
@@ -85,8 +79,6 @@ public class DelegateRecyclerView extends RecyclerView {
 
     /**
      * 列表长按事件
-     *
-     * @param onItemLongClickListener
      */
     public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
         mOnItemLongClickListener = onItemLongClickListener;

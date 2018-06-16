@@ -27,6 +27,19 @@
     <dimen name="common_45dp">45dp</dimen>
     <dimen name="common_48dp">48dp</dimen>
 
+    <dimen name="common_10sp">10sp</dimen>
+    <dimen name="common_11sp">11sp</dimen>
+    <dimen name="common_12sp">12sp</dimen>
+    <dimen name="common_13sp">13sp</dimen>
+    <dimen name="common_14sp">14sp</dimen>
+    <dimen name="common_15sp">15sp</dimen>
+    <dimen name="common_16sp">16sp</dimen>
+    <dimen name="common_17sp">17sp</dimen>
+    <dimen name="common_18sp">18sp</dimen>
+    <dimen name="common_19sp">19sp</dimen>
+    <dimen name="common_20sp">20sp</dimen>
+    <dimen name="common_25sp">25sp</dimen>
+
     <dimen name="load_more_text_size">16px</dimen>
     <dimen name="load_more_height">50dp</dimen>
 </resources>

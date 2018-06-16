@@ -3,7 +3,9 @@ package com.meizu.code.frame.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.support.v4.view.animation.PathInterpolatorCompat;
 import android.view.View;
+import android.view.animation.Interpolator;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -60,6 +62,10 @@ public class CodeFrameStaticUtils {
     }
 
     public static boolean checkActivityIsAlive(Activity activity) {
-        return activity != null && !activity.isFinishing();
+        return activity != null && !activity.isFinishing() && !activity.isDestroyed();
+    }
+
+    public static Interpolator getPathInterpolator(float controlX1, float controlY1, float controlX2, float controlY2) {
+        return PathInterpolatorCompat.create(controlX1, controlY1, controlX2, controlY2);
     }
 }

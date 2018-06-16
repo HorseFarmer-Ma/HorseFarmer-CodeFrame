@@ -24,7 +24,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
 /**
  * Retrofit请求框架
@@ -36,8 +36,6 @@ public class ServiceClient {
     private static final int CONNECT_TIMEOUT = 15;
     private static final int WRITE_TIMEOUT = 15;
     private static final int READ_TIMEOUT = 15;
-
-    private static ServiceClient mInstance;
     private OkHttpClient mOkHttpClient;
 
     private static class ServiceClientHolder{
@@ -53,7 +51,7 @@ public class ServiceClient {
                         .baseUrl(url)
                         .client(getClient())
                         .addConverterFactory(FastJsonConverterFactory.create())
-                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                         .build();
     }
 

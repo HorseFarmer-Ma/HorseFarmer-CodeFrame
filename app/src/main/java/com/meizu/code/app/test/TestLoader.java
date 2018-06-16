@@ -1,14 +1,17 @@
 package com.meizu.code.app.test;
 
+import com.meizu.code.frame.base.example.bean.BookBean;
+import com.meizu.code.frame.base.example.layer.logic.DemoServiceDoHelper;
 import com.meizu.code.frame.base.frame.mvp.BaseDataLoader;
 import com.meizu.code.frame.base.model.delegate.DelegateBlockItem;
-import com.meizu.code.frame.base.model.widget.recyclerview.blockitem.CodeFrameBlockItem;
+import com.meizu.code.frame.base.example.blockitem.CodeFrameBlockItem;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
 import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * 测试类
@@ -19,19 +22,21 @@ import rx.Observable;
 public class TestLoader extends BaseDataLoader<List<DelegateBlockItem>> {
     @Override
     protected Observable<List<DelegateBlockItem>> onStart() {
-        return Observable.fromCallable(new Callable<List<DelegateBlockItem>>() {
-            @Override
-            public List<DelegateBlockItem> call() throws Exception {
-                List<DelegateBlockItem> listData = new ArrayList<>();
-                for (int i = 0; i < 12; i++) {
-                    listData.add(new CodeFrameBlockItem("煞笔"));
-                    listData.add(new CodeFrameBlockItem("试验"));
-                    listData.add(new CodeFrameBlockItem("搞笑"));
-                    listData.add(new CodeFrameBlockItem("恶心"));
-                }
-                return listData;
-            }
-        });
+
+        return DemoServiceDoHelper.getInstance().requestSearchBook("西游记")
+                .map(new Func1<BookBean, List<DelegateBlockItem>>() {
+                    @Override
+                    public List<DelegateBlockItem> call(BookBean bookBean) {
+                        List<DelegateBlockItem> blockItems = new ArrayList<>();
+                        if (bookBean != null) {
+                            List<BookBean.BooksBean> listData = bookBean.getBooks();
+                            for (BookBean.BooksBean data : listData) {
+                                blockItems.add(new CodeFrameBlockItem(data.getTitle()));
+                            }
+                        }
+                        return blockItems;
+                    }
+                });
     }
 
     @Override

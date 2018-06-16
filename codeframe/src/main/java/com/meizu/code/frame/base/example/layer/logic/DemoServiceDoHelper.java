@@ -36,7 +36,6 @@ public class DemoServiceDoHelper {
     public Observable<BookBean> requestSearchBook(String bookName) {
         Map<String, String> maps = new HashMap<>();
         maps.put("q", bookName);
-        return mDemoServiceHelper.requestSearchBook(maps)
-                .m;
+        return mDemoServiceHelper.requestSearchBook(maps);
     }
 }

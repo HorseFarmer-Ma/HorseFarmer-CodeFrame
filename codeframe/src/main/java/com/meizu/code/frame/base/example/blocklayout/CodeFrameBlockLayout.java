@@ -1,17 +1,14 @@
-package com.meizu.code.frame.base.model.widget.recyclerview.blocklayout;
+package com.meizu.code.frame.base.example.blocklayout;
 
-import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.meizu.code.frame.R;
 import com.meizu.code.frame.base.model.delegate.DelegateBlockLayout;
-import com.meizu.code.frame.base.model.widget.recyclerview.blockitem.CodeFrameBlockItem;
-import com.orhanobut.logger.Logger;
+import com.meizu.code.frame.base.example.blockitem.CodeFrameBlockItem;
 
 /**
  * 布局文件

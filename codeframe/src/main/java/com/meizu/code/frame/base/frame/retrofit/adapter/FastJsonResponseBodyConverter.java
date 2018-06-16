@@ -30,6 +30,5 @@ public class FastJsonResponseBodyConverter<T> implements Converter<ResponseBody,
         String tempStr = bufferedSource.readUtf8();
         bufferedSource.close();
         return JSON.parseObject(tempStr, type);
-
     }
 }

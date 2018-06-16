@@ -1,7 +1,7 @@
-package com.meizu.code.frame.base.model.widget.recyclerview.blockitem;
+package com.meizu.code.frame.base.example.blockitem;
 
 import com.meizu.code.frame.base.model.delegate.DelegateBlockItem;
-import com.meizu.code.frame.base.model.widget.recyclerview.blocklayout.CodeFrameBlockLayout;
+import com.meizu.code.frame.base.example.blocklayout.CodeFrameBlockLayout;
 
 /**
  * item数据

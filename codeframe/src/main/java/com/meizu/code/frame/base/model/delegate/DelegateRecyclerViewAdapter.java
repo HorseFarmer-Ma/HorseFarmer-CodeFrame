@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.meizu.code.frame.base.model.widget.recyclerview.blocklayout.LoadMoreBlockLayout;
 import com.meizu.code.frame.utils.CollectionUtils;
 import com.orhanobut.logger.Logger;
 

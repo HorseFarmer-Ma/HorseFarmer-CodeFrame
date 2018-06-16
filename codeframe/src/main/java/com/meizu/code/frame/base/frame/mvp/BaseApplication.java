@@ -10,7 +10,6 @@ import com.squareup.leakcanary.LeakCanary;
  * <p>
  * Created by mxm on 31/01/18.
  */
-
 public class BaseApplication extends Application {
 
     @Override

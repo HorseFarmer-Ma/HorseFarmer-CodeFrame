@@ -7,20 +7,18 @@ import android.content.Context;
  * <p>
  * Created by mxm on 21/01/18.
  */
-
 public class CodeFrameUtils {
     private Context mApplicationContext;
-    private static CodeFrameUtils sInstance;
+
+    private static class CodeFrameUtilsHolder {
+        private static final CodeFrameUtils HOLDER = new CodeFrameUtils();
+    }
 
     public static CodeFrameUtils getInstance() {
-        if (sInstance == null) {
-            synchronized (CodeFrameUtils.class) {
-                if (sInstance == null) {
-                    sInstance = new CodeFrameUtils();
-                }
-            }
-        }
-        return sInstance;
+        return CodeFrameUtilsHolder.HOLDER;
+    }
+
+    private CodeFrameUtils() {
     }
 
     public Context getGlobalContext() {

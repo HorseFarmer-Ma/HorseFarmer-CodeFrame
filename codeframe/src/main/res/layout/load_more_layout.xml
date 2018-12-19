@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.meizu.code.frame.base.model.widget.loadmore.BaseLoadMoreView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/load_more_height">
+
+    <com.meizu.code.frame.base.model.widget.loadmore.LoadingTextView
+        android:id="@+id/loading_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</com.meizu.code.frame.base.model.widget.loadmore.BaseLoadMoreView>

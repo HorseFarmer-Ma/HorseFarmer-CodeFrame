@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="124dp">
+
+    <com.meizu.code.app.example.widget.RvEditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:fontFamily="ColorFont-Regular"
+        android:gravity="start|top"
+        android:hint="请输入文字"
+        android:paddingBottom="@dimen/common_12dp"
+        android:paddingTop="@dimen/common_20dp"
+        android:textColorHint="@color/fifteen_percent_black"
+        android:textSize="@dimen/common_14sp" />
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">CodeFrame</string>
+    <string name="meituan_app">美团单量</string>
+    <string name="meituan_write_balance">请填写该日期的单量</string>
+    <string name="meituan_bal">%d单</string>
+    <string name="setting">设置</string>
+    <string name="meituan_clear_date_data">清空</string>
+    <string name="target_bal_count">目标月单量：%d</string>
+    <string name="input_pure_digital">请填写纯数字</string>
+    <string name="input_target_count">请填写月目标单量</string>
+    <string name="today">今天</string>
+    <string name="meituan_balance_date_show">%d 年 %d 月</string>
+    <string name="meituan_balance_month_arrow">choose month</string>
+    <string name="meituan_balance_report">月平均单数：%.2f\n实际出勤平均单数：%.2f\n所有单数：%d\n实际出勤天数：%d</string>
+    <string name="meituan_balance_wrong_notice">抱歉，出现未知错误</string>
+    <string name="copy_right">copyright © 2018–2019</string>
+    <string name="author">作者：帅哥明</string>
+    <string name="meituan_clear_date">清除记录？</string>
+</resources>

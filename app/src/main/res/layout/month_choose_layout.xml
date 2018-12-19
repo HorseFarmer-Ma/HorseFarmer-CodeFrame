@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/common_5dp"
+    android:paddingTop="@dimen/common_5dp">
+
+    <ImageView
+        android:id="@+id/del_month"
+        style="@style/ItemClickBorderlessStyle"
+        android:layout_width="@dimen/common_40dp"
+        android:layout_height="@dimen/common_40dp"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/meituan_balance_month_arrow"
+        android:padding="@dimen/common_10dp"
+        android:src="@drawable/left_arrow" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/common_20dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/common_10dp"
+        android:layout_marginRight="@dimen/common_10dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/fifty_percent_black"
+        android:textSize="@dimen/common_18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/add_month"
+        style="@style/ItemClickBorderlessStyle"
+        android:layout_width="@dimen/common_40dp"
+        android:layout_height="@dimen/common_40dp"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/meituan_balance_month_arrow"
+        android:padding="@dimen/common_10dp"
+        android:src="@drawable/right_arrow" />
+
+</LinearLayout>

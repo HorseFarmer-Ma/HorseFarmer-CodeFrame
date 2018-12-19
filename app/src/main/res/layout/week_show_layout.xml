@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/week_name"
+        android:layout_width="@dimen/common_40dp"
+        android:layout_height="@dimen/common_40dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/common_10dp"
+        android:layout_marginTop="@dimen/common_10dp"
+        android:background="@drawable/week_round_background"
+        android:gravity="center"
+        android:textColor="@color/fifty_percent_black" />
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/common_1dp"-->
+    <!--android:layout_gravity="bottom"-->
+    <!--android:background="@color/meituan_balance_divider_color"-->
+    <!--android:layout_marginBottom="@dimen/common_10dp" />-->
+</LinearLayout>

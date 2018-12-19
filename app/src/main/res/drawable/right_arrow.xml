@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="@dimen/common_5dp"
+    android:height="@dimen/common_5dp"
+    android:viewportHeight="1024"
+    android:viewportWidth="1024">
+
+    <path
+        android:name="arrow"
+        android:fillColor="@color/meituan_balance_arrow_color"
+        android:pathData="M490.667 960c247.296 0 448-200.704 448-448s-200.704-448-448-448-448
+        200.704-448 448 200.704 448 448 448zM351.915 254.976c10.752-10.752 28.672-11.264
+        39.424-0.512l233.472 233.472c1.024 1.024 2.048 2.048 3.072 4.096 5.632 5.632 8.193
+        12.8 8.192 19.968s-2.56 14.848-8.192 20.48l-236.544 236.544c-10.752 10.752-28.16
+        10.752-39.424-0.512-10.752-10.752-11.264-28.672-0.512-39.424l218.112-217.088-217.6-217.6c-10.752-10.752-10.752-28.672 0-39.424z" />
+
+</vector>

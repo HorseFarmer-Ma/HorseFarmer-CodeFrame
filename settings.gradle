@@ -1,0 +1,4 @@
+rootProject.name = 'CodeFrame'  // 可有可无的一行
+include ':app', ':greendao'
+// MVP模块
+include ':codeframe'

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /*************************************************************
+  ~ Class：calculate_bal_layout.xml  Module：app  Project：CodeFrame
+  ~
+  ~ Current modified time：2018-11-20 12:14:58
+  ~ Last modified time：2018-11-20 12:14:58
+  ~
+  ~ Author：maxueming
+  ~
+  ~ Copyright (c) 2017 - 2018
+  ~ *************************************************************/
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/balance_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="@dimen/common_20dp"
+        android:padding="@dimen/common_20dp"
+        android:text="@string/meituan_balance_wrong_notice"
+        android:textColor="@color/meituan_balance_green_background"
+        android:textSize="@dimen/common_16sp" />
+
+</LinearLayout>

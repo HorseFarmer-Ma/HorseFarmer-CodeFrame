@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.meizu.code.frame.base.model.widget.overscroll.ColorOverScrollLayout
+        android:id="@+id/overscroll_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/copy_right"
+        android:layout_alignParentTop="true"
+        android:clipChildren="false">
+
+        <com.meizu.code.frame.base.model.delegate.DelegateRecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:focusable="false"
+            android:paddingEnd="@dimen/common_13dp"
+            android:paddingStart="@dimen/common_13dp"
+            android:scrollbars="none" />
+
+    </com.meizu.code.frame.base.model.widget.overscroll.ColorOverScrollLayout>
+
+    <TextView
+        android:id="@+id/copy_right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="@string/copy_right"
+        android:textColor="@color/forty_percent_black"
+        android:padding="@dimen/common_10dp"
+        android:textSize="@dimen/common_12sp" />
+
+</RelativeLayout>
+

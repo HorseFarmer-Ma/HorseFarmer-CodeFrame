@@ -1,0 +1,22 @@
+<!--
+  ~ /*************************************************************
+  ~ Class：side_nav_bar.xml  Module：app  Project：CodeFrame
+  ~
+  ~ Current modified time：2018-11-22 14:03:06
+  ~ Last modified time：2018-11-22 14:03:04
+  ~
+  ~ Author：maxueming
+  ~
+  ~ Copyright (c) 2017 - 2018
+  ~ *************************************************************/
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:centerColor="#009688"
+        android:endColor="#00695C"
+        android:startColor="#4DB6AC"
+        android:type="linear" />
+</shape>

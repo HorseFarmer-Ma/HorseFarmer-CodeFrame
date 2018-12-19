@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.meizu.code.frame.base.model.widget.overscroll.ColorOverScrollLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overscroll_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false">
+
+    <com.meizu.code.frame.base.model.delegate.DelegateRecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:focusable="false"
+        android:paddingEnd="@dimen/common_16dp"
+        android:paddingStart="@dimen/common_24dp"
+        android:scrollbars="none">
+    </com.meizu.code.frame.base.model.delegate.DelegateRecyclerView>
+
+</com.meizu.code.frame.base.model.widget.overscroll.ColorOverScrollLayout>

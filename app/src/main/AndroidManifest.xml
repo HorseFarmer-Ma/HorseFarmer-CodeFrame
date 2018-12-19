@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.meizu.code.app">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".CodeFrameApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_meituan_launcher"
+        android:label="@string/meituan_app"
+        android:supportsRtl="true"
+        android:theme="@style/BaseAppTheme">
+
+        <!--<activity-->
+        <!--android:name=".test.TestActicity"-->
+        <!--android:exported="true"-->
+        <!--android:windowSoftInputMode="adjustPan">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN" />-->
+        <!--<action android:name="android.intent.codeframe.testActivity" />-->
+
+        <!--<category android:name="android.intent.category.DEFAULT" />-->
+        <!--<category android:name="android.intent.category.LAUNCHER" />-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <activity android:name=".meituan.MeituanBalanceActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

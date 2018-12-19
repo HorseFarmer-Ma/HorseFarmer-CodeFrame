@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    百分比对照
+    98%    fa
+    95%    f2
+    90%    e6
+    85%    d8
+    80%    cc
+    70%    b3
+    60%    99
+    50%    80
+    40%    66
+    30%    4c
+    20%    33
+    15%    26
+    10%    19
+    8%    14
+    6%    0f
+    4%    0A
+    -->
+
+    <!-- 夜间：白色80%透明度 -->
+    <color name="eighty_percent_white">#ccffffff</color>
+    <!-- 黑色80%透明度 -->
+    <color name="eighty_percent_black">#cc000000</color>
+    <!-- 夜间：白色75%透明度 -->
+    <color name="seventy_five_percent_white">#A5ffffff</color>
+    <!-- 黑色75%透明度 -->
+    <color name="seventy_five_percent_black">#A5000000</color>
+    <!-- 夜间：白色70%透明度 -->
+    <color name="seventy_percent_white">#B3ffffff</color>
+    <!-- 黑色70%透明度 -->
+    <color name="seventy_percent_black">#B3000000</color>
+    <!-- 夜间：白色60%透明度 -->
+    <color name="sixty_percent_white">#99ffffff</color>
+    <color name="sixty_percent_black">#99000000</color>
+    <!-- 白色50%透明度 -->
+    <color name="fifty_percent_white">#80ffffff</color>
+    <!-- 黑色50%透明度 -->
+    <color name="fifty_percent_black">#80000000</color>
+    <!-- 黑色40%透明度 -->
+    <color name="forty_percent_black">#66000000</color>
+    <!-- 夜间：白色40%透明度 -->
+    <color name="forty_percent_white">#66ffffff</color>
+
+    <!-- 黑色30%透明度 -->
+    <color name="thirty_percent_black">#4c000000</color>
+    <!-- 白色30%透明度 -->
+    <color name="thirty_percent_white">#4cffffff</color>
+    <!-- 黑色20%透明度 -->
+    <color name="twenty_percent_black">#33000000</color>
+    <!-- 白色20%透明度 -->
+    <color name="twenty_percent_white">#33ffffff</color>
+    <!-- 黑色15%透明度 -->
+    <color name="fifteen_percent_black">#26000000</color>
+    <!-- 白色15%透明度 -->
+    <color name="fifteen_percent_white">#26ffffff</color>
+    <!-- 黑色12%透明度 -->
+    <color name="twelve_percent_black">#1F000000</color>
+    <!-- 白色12%透明度 -->
+    <color name="twelve_percent_white">#1Fffffff</color>
+    <!-- 黑色10%透明度 -->
+    <color name="ten_percent_black">#19000000</color>
+    <!-- 白色10%透明度 -->
+    <color name="ten_percent_white">#19ffffff</color>
+    <!-- 黑色8%透明度 -->
+    <color name="eight_percent_black">#14000000</color>
+    <!-- 白色8%透明度 -->
+    <color name="eight_percent_white">#14FFFFFF</color>
+    <!-- 黑色6%透明度 -->
+    <color name="six_percent_black">#0F000000</color>
+    <!-- 白色6%透明度 -->
+    <color name="six_percent_white">#0FFFFFFF</color>
+    <!-- 黑色5%透明度 -->
+    <color name="five_percent_black">#0D000000</color>
+    <!-- 白色5%透明度 -->
+    <color name="five_percent_white">#0DFFFFFF</color>
+    <!-- 黑色4%透明度 -->
+    <color name="four_percent_black">#0A000000</color>
+    <!-- 黑色2%透明度 -->
+    <color name="two_percent_black">#05000000</color>
+    <!-- 白色4%透明度 -->
+    <color name="four_percent_white">#0AFFFFFF</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="navitation_bar_bg_color">#f7f7f7</color>
+
+    <color name="day_background">#ffffffff</color>
+    <color name="night_background">#ff333333</color>
+
+    <color name="theme_color">#dc0a0a</color>
+
+    <color name="loading_text_color">#999999</color>
+
+    <color name="ripple_color">#33000000</color>
+</resources>

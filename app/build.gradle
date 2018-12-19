@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'codeframe'
+            keyPassword '87654321'
+            storeFile file('../codeframe.jks')
+            storePassword '12345678'
+        }
+    }
+    compileSdkVersion 27
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.meizu.code.app"
+        minSdkVersion 21
+        targetSdkVersion 27
+//        multiDexEnabled true
+        // 版本号对应为versionName中: 1*10000 + 0 * 100 + 0 = 10000
+        versionCode Integer.parseInt(version_major) * 10000 + Integer.parseInt(version_minor) * 100 + Integer.parseInt(version_patch)
+        versionName "${version_major}.${version_minor}.${version_patch}"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        // 调试版本
+        debug {
+            // 移除无用的resource文件
+            minifyEnabled false
+            versionNameSuffix "-debug-" + getDate()
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        // 正式版本
+        release {
+            // 移除无用的resource文件
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        // 开发中期
+        beta {
+            debuggable true
+            signingConfig signingConfigs.config
+            shrinkResources true
+            minifyEnabled true
+            versionNameSuffix "_beta_" + getDate()
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            matchingFallbacks = ['release', 'debug']
+        }
+    }
+}
+
+static def getDate() {
+    new Date().format('YYYYMMDDHHMMSS')
+}
+
+configurations.all {
+    resolutionStrategy.force 'com.android.support:support-annotations:27.1.1'
+}
+
+dependencies {
+    implementation 'com.android.support:design:27.1.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test:runner:1.0.2'
+    // 添加模块codeframe的依赖，必加
+    compile project(path: ':codeframe')
+}

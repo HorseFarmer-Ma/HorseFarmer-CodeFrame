@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="meituan_balance_gold_background">#beefd210</color>
+    <color name="meituan_balance_green_background">#be23a441</color>
+    <color name="meituan_balance_red_background">#bec9220f</color>
+    <color name="meituan_balance_divider_color">#3d0e4938</color>
+    <color name="meituan_balance_week_color">#106617</color>
+    <color name="meituan_balance_arrow_color">@color/meituan_balance_green_background</color>
+</resources>

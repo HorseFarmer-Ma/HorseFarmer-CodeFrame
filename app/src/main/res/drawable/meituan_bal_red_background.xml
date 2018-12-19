@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*************************************************************
+  ~ Class：meituan_bal_red_background.xml  Module：app  Project：CodeFrame
+  ~
+  ~ Current modified time：2018-11-19 17:36:05
+  ~ Last modified time：2018-11-19 16:29:57
+  ~
+  ~ Author：maxueming
+  ~
+  ~ Copyright (c) 2017 - 2018
+  ~ *************************************************************/
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid android:color="@color/meituan_balance_red_background"/>
+    <corners android:radius="@dimen/common_4dp"/>
+
+</shape>
